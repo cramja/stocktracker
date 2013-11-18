@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <div id="titlebar"><h1>Stock Tracker 3000<h1></div>
+
+    <div id="navbar">
+    	{% block nav %}
+    		<ul>
+    			<li><a href="/account/"></a>Account Details</li>
+    		</ul>
+    	{% endblock %}
+    </div>
+
+    <div id="userbar">
+    	{% block userinfo %}
+    		{% ifnotequal user.id None %}
+    			Hello {{ user.username}}.
+    		{% else %}
+    			Please log in.
+    		{% endifnotequal %}
+    	{% endblock %}
+    </div>
+
+    <div id="content">
+    	{% block content %}{% endblock %}
+    </div>
+    
+    
+    <div id="footer">
+    {% block footer %}
+    	<a href="http://www.meatspin.com">Copyright 1692</a>
+    {% endblock %}
+    </div>
+</body>
+
+</html>
