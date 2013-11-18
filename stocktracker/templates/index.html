@@ -17,11 +17,14 @@
 
     <div id="userbar">
     	{% block userinfo %}
-    		{% ifnotequal user.id None %}
-    			Hello {{ user.username}}.
+    		{% if user.is_anonymous %}
+    			You are not logged in, please 
+                    <a href="/accounts/login/">login</a> or 
+                    <a href="/accounts/register/">create an account</a>
     		{% else %}
-    			Please log in.
-    		{% endifnotequal %}
+    			Hello <a href="">{{ user.username }}</a> 
+                <a href="/accounts/logout/">logout</a>
+    		{% endif %}
     	{% endblock %}
     </div>
 
