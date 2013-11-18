@@ -5,6 +5,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'stocktracker.views.index'),
-    url(r'^testvisuals/$', 'stocktracker.views.testvisuals'),
+    url(r'^visuals/$', 'stocktracker.views.visuals'),
     url(r'^admin/', include(admin.site.urls)),
 )

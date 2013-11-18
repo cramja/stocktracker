@@ -4,5 +4,5 @@ from django.http import HttpResponse
 def index(response):
 	return render(response, 'index.html')
 
-def testvisuals(response):
-	return render(response, 'testvisuals.html')
+def visuals(response):
+	return render(response, 'visuals.html')
