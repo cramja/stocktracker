@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect
 def index(response):
 	return render(response, 'index.html')
 
-<<<<<<< HEAD
 def testvisuals(response):
 	return render(response, 'testvisuals.html')
 
@@ -42,7 +41,6 @@ def register(request):
     	{
         	'form': form,
     	})
-=======
+    
 def visuals(response):
 	return render(response, 'visuals.html')
->>>>>>> 284bed87372b3c07aa0017cad14a8ddca3e517e8
