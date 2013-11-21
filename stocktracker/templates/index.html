@@ -22,8 +22,13 @@
                     <a href="/accounts/login/">login</a> or 
                     <a href="/accounts/register/">create an account</a>
     		{% else %}
-    			Hello <a href="">{{ user.username }}</a> 
-                <a href="/accounts/logout/">logout</a>
+                <div>
+    			     Hello <a href="">{{ user.username }}</a>
+                </div>
+                <div> 
+                    <a href="/accounts/logout/">logout</a>
+                    {{ user.password }}
+                </div>
     		{% endif %}
     	{% endblock %}
     </div>

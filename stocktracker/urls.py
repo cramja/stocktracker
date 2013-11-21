@@ -5,11 +5,13 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^accounts/login/$',  login, ),
+	url(r'^accounts/login/$',  login ),
 	url(r'^accounts/logout/$', logout, {'template_name': 'registration/loggedout.html'}),
-	url(r'^accounts/profile/$', 'stocktracker.views.testvisuals'),
+	url(r'^accounts/profile/$', 'stocktracker.views.profile'),
 	url(r'^accounts/register/$', 'stocktracker.views.register'),
-	url(r'^$', 'stocktracker.views.index'),
+	url(r'^accounts/success/$', 'stocktracker.views.success'),
+
+	url(r'^$', 'stocktracker.views.index'), #index page
 	url(r'^visuals/$', 'stocktracker.views.visuals'),
 	url(r'^admin/', include(admin.site.urls)),
 )

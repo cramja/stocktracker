@@ -1,0 +1,11 @@
+
+{% block title %}Success!{% endblock %}
+
+{% block content %}
+  <h1>You have created a new account</h1>
+  <table>
+  	<tr><td>username:<td>
+  		<td>{{user.username}}<td></tr>
+  	<tr><td>name:</td><td>{{user.fullname}}</td></tr>
+  </table>
+{% endblock %}

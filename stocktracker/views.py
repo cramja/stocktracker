@@ -6,6 +6,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 
+
+from stocktracker import forms
+
 def index(response):
 	return render(response, 'index.html')
 
@@ -30,17 +33,33 @@ def testsessions(request):
 		return render(request, 'testsessions.html')
 
 def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            return HttpResponseRedirect("/") #redirects user to homepage
-    else:
-        form = UserCreationForm()
-    return render(request, "registration/register.html", 
-    	{
-        	'form': form,
-    	})
-    
+	if request.user.is_authenticated():
+		return HttpResponseRedirect("/profile/")
+	if request.method == 'POST':
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			new_user = form.save()
+			return HttpResponseRedirect("/accounts/success/") #redirects user to homepage
+	else:
+		form = UserCreationForm()
+	return render(request, 
+		"registration/register.html", 
+		{'form': form,}
+	)
+
 def visuals(response):
 	return render(response, 'visuals.html')
+
+@login_required
+def profile(request):
+	if request.method == 'POST':
+		form = forms.CreateAccountForm(
+			initial={
+						'username' : POST.user.username,
+						'first_name' : POST.user.first_name,
+						'last_name' : POST.user.last_name,
+						'email' : POST.user.email,
+					})
+		return render(request, 'profile.html', {'form':form})
+	else:
+		return render(request, 'profile.html')
