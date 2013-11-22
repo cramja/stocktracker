@@ -23,7 +23,7 @@ def login(request):
 	if(request.method == "POST"):
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None:
-			authlogin(request, user)
+			auth_login(request, user)
 			return HttpResponseRedirect('/users/profile/', request)
 		else:
 			error = 'The username/password combo is incorrect'
