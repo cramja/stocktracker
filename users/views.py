@@ -5,9 +5,21 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login as authlogin
+from django.contrib.auth.views import login as loginview
 
+
+def login2(request):
+	if request.user.is_authenticated():
+		return render(request, 'users/profile.html')
+	else:
+		return loginview(request, template_name='users/login.html')
+	
 
 def login(request):
+'''
+old login function.
+check out that code, oh yeah, so sophisticated
+'''
 	if request.user.is_authenticated(): #if the user is already logged in, redirect to the profile page
 		return HttpResponseRedirect('/users/profile/')
 		
@@ -22,6 +34,7 @@ def login(request):
 		context = RequestContext(request)
 		return render_to_response('users/login.html', context)
 
+@login_required
 def logout_view(request):
 	logout(request)
 	return render(request, 'users/logout.html')
@@ -32,7 +45,7 @@ def profile(request):
 
 def register(request):
 	if request.user.is_authenticated():
-		return HttpResponseRedirect(redirect_to='/users/logout/')
+		return render(request, 'users/profile.html')
 	if 'errors' in request.session: #user previously tried to enter stuff in this form
 		error = request.session['errors']
 		enteredusername = ""
