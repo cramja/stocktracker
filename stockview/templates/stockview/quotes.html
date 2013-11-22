@@ -45,7 +45,15 @@
 	
 	}
 	
-    function getStock(args) {
+    function getStock() {
+	
+		var args = {
+		
+			stock: document.getElementById("stock").value,
+			startDate: document.getElementById("start").value,
+			endDate: document.getElementById("end").value,
+			
+		};
 	
 		document.getElementById("getstockbutton").value = "Loading";
 	
@@ -83,6 +91,12 @@
 	}
 	</script>
 	
-	<input type="button" id="getstockbutton" onclick="updateStock({ stock: 'AAPL', startDate: '2013-01-01', endDate: '2013-01-05' })" value="Get Stocks" />
+	Stock Label: <input type="text" id="stock" value="prefix indexes with '^'"/>
+	
+	Start Date: <input type="date" id="start" />
+	
+	End Date: <input type="date" id="end" />
+	
+	<input type="button" id="getstockbutton" onclick="updateStock()" value="Get Stocks" />
 	
 	<div id="output" ><pre>	Date		Open	High	Low	Close	Volume</pre></div>
