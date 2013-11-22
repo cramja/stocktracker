@@ -17,13 +17,13 @@ def login2(request):
 
 def login(request):
 	if request.user.is_authenticated(): #if the user is already logged in, redirect to the profile page
-		return HttpResponseRedirect('/users/profile/')
-		
+		return redirect('/users/profile/')
+
 	if(request.method == "POST"):
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None:
 			authlogin(request, user)
-			return HttpResponseRedirect('/users/profile', request)
+			return HttpResponseRedirect('/users/profile/', request)
 		else:
 			return HttpResponse('The username/password combo is incorrect')
 	else:
@@ -37,7 +37,7 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-	return render_to_response('users/profile.html', {'stocks': UserStockMapping.objects.filter(user=request.user)})
+	return render_to_response('users/profile.html', {'stocks': UserStockMapping.objects.filter(user=request.user)}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -58,6 +58,21 @@ def addStock(request):
 			mapping.user = request.user
 			mapping.stock = matchingStock
 			mapping.save()
+		return redirect("/users/profile/")
+	else:
+		return redirect("/users/profile/")
+
+@login_required
+def removeStock(request):
+	if (request.method =="POST"):
+		stockNameToRemove = request.POST["stock"]
+		stock = Stock.objects.get(name=stockNameToRemove)
+		mapping = UserStockMapping.objects.get(user=request.user, stock=stock)
+		mapping.delete()
+		mappingsToStock = UserStockMapping.objects.filter(stock=stock)
+		# If there are no more references to the stock, it can be deleted
+		if (len(mappingsToStock) == 0):
+			stock.delete()
 		return redirect("/users/profile/")
 	else:
 		return redirect("/users/profile/")

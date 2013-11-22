@@ -6,14 +6,19 @@
 <h2>Your stocks</h2>
 
 {%for stock in stocks %}
-    {{stock.stock.name}}
+    <form action="/users/remove_stock/" method="post">{% csrf_token %}
+        {{stock.stock.name}}
+        <input type="hidden" name="stock" value="{{stock.stock.name}}"/>
+        <input type="submit" value = "remove"/>
+    </form>
     <br/>
 {% endfor %}
 
 <h2>Add a stock</h2>
+
 <form action="/users/add_stock/" method="post">{% csrf_token %}
     stock: <input type="text" name="stock"/>
-    <input type="submit" value="Add" />
+    <input type="submit" value="add"/>
 </form>
 
 {% endblock %}
