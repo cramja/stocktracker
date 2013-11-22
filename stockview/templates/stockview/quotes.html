@@ -1,0 +1,65 @@
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+	
+	var stockFunction = null;
+	
+	(function($) {
+	
+	function printStock(data) {
+	
+		console.log(data);
+	
+		for (var i = 0; i < data.query.count; i++) {
+		
+			document.getElementById("output").innerHTML += "<pre>" + 
+			"	" + data.query.results.quote[i].date +
+			"	" + data.query.results.quote[i].Open +
+			"	" + data.query.results.quote[i].High + 
+			"	" + data.query.results.quote[i].Low + 
+			"	" + data.query.results.quote[i].Close +
+			"	" + data.query.results.quote[i].Volume +
+			"</pre>";
+		
+		}
+	
+	}
+	
+    function getStock(args) {
+	
+		var base = 'http://query.yahooapis.com/v1/public/yql?q=';
+		var query = 'select * from yahoo.finance.historicaldata where symbol = "{stock}" and startDate = "{startDate}" and endDate = "{endDate}"';
+		var suffix = '&env=store://datatables.org/alltableswithkeys&format=json&callback=?';
+ 
+        args = args || {};
+ 
+        if (!args.stock) {
+            alert('No stock defined');
+            return;
+        }
+ 
+        query = query
+        .replace('{stock}', args.stock)
+        .replace('{startDate}', args.startDate)
+        .replace('{endDate}', args.endDate)
+ 
+        var url = base + query + suffix;
+		
+        $.getJSON(url, function(data){printStock(data);} );
+		
+    }
+	
+	stockFunction = getStock;
+
+
+})(jQuery);
+
+	function updateStock(args) {
+
+		stockFunction(args);
+	
+	}
+	</script>
+	
+	<input type="button" onclick="updateStock({ stock: 'AAPL', startDate: '2013-01-01', endDate: '2013-01-05' })" value="Get Stocks" />
+	
+	<div id="output" />
