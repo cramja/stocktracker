@@ -8,17 +8,36 @@
 	function printStock(data) {
 	
 		console.log(data);
-	
-		for (var i = 0; i < data.query.count; i++) {
 		
-			document.getElementById("output").innerHTML += "<pre>" + 
-			"	" + data.query.results.quote[i].date +
-			"	" + data.query.results.quote[i].Open +
-			"	" + data.query.results.quote[i].High + 
-			"	" + data.query.results.quote[i].Low + 
-			"	" + data.query.results.quote[i].Close +
-			"	" + data.query.results.quote[i].Volume +
-			"</pre>";
+		if (data.query.results.quote[0].High) {
+		
+			for (var i = 0; i < data.query.count; i++) {
+		
+				document.getElementById("output").innerHTML += "<pre>" + 
+				"	" + data.query.results.quote[i].date +
+				"	" + data.query.results.quote[i].Open +
+				"	" + data.query.results.quote[i].High + 
+				"	" + data.query.results.quote[i].Low + 
+				"	" + data.query.results.quote[i].Close +
+				"	" + data.query.results.quote[i].Volume +
+				"</pre>";
+		
+			}
+		
+		} else {
+		
+				for (var i = 0; i < data.query.count; i++) {
+		
+				document.getElementById("output").innerHTML += "<pre>" + 
+				"	" + data.query.results.quote[i].col0 +
+				"	" + data.query.results.quote[i].col1 +
+				"	" + data.query.results.quote[i].col2 + 
+				"	" + data.query.results.quote[i].col3 + 
+				"	" + data.query.results.quote[i].col4 +
+				"	" + data.query.results.quote[i].col5 +
+				"</pre>";
+		
+			}
 		
 		}
 	
