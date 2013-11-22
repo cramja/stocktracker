@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <div id="titlebar">
+        <h1>Stock Tracker App<h1>
+    </div>
+
+    <div id="userbar">
+    	{% block userinfo %}
+    		{% if user.is_anonymous %}
+    			You are not logged in, please
+                <table>
+                    <tr><a href="/users/login/">login</a></tr>
+                    <tr><a href="/users/register/">create an account</a></tr>
+                </table>
+    		{% else %}
+    			Hello <a href="">{{ user.username }}</a> 
+                <a href="/users/logout/">logout</a>
+    		{% endif %}
+    	{% endblock %}
+    </div>
+
+    <div id="content">
+    	{% block content %}{% endblock %}
+    </div>
+    
+    
+    <div id="footer">
+        {% block footer %}
+        	<a href="http://www.meatspin.com">Copyright 1692</a>
+        {% endblock %}
+    </div>
+
+</body>
+
+</html>
