@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, authenticate, login as authlogin
+from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.views import login as loginview
 
 
@@ -16,23 +16,25 @@ def login2(request):
 	
 
 def login(request):
-'''
-old login function.
-check out that code, oh yeah, so sophisticated
-'''
+# old login function.
+# check out that code, oh yeah, so sophisticated
 	if request.user.is_authenticated(): #if the user is already logged in, redirect to the profile page
-		return HttpResponseRedirect('/users/profile/')
+		return render(request, 'users/profile.html')
 		
 	if(request.method == "POST"):
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None:
-			authlogin(request, user)
-			return HttpResponseRedirect('/users/profile', request)
+			auth_login(request, user)
+			return redirect('/users/profile/')
 		else:
-			return HttpResponse('The username/password combo is incorrect')
+			error = 'The username/password combo is incorrect'
+			return render(
+				request, 
+				'users/login.html', 
+				{ 'error' : error, 'username' : request.POST['username'], }
+				)
 	else:
-		context = RequestContext(request)
-		return render_to_response('users/login.html', context)
+		return render(request, 'users/login.html')
 
 @login_required
 def logout_view(request):
