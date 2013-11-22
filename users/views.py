@@ -37,7 +37,7 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-	return render(request, 'users/profile.html')
+	return render_to_response('users/profile.html', {'stocks': UserStockMapping.objects.filter(user=request.user)})
 
 
 @login_required

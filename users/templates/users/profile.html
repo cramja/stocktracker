@@ -3,7 +3,14 @@
 {% block title %}Profile Info{% endblock %}
 
 {% block content %}
+<h2>Your stocks</h2>
 
+{%for stock in stocks %}
+    {{stock.stock.name}}
+    <br/>
+{% endfor %}
+
+<h2>Add a stock</h2>
 <form action="/users/add_stock/" method="post">{% csrf_token %}
     stock: <input type="text" name="stock"/>
     <input type="submit" value="Add" />
