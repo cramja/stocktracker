@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.views import login as loginview
 
-from models import Stock, UserStockMapping
+from users.models import Stock, UserStockMapping
 
 def login2(request):
 	if request.user.is_authenticated():
@@ -54,10 +54,8 @@ def addStock(request):
 			matchingStock = Stock()
 			matchingStock.name = stockNameToAdd
 			matchingStock.save()
-			print "created stock:", matchingStock
 		else:
 			matchingStock = matchingStock[0]
-			print "found stock:", matchingStock
 		if len(UserStockMapping.objects.filter(user=request.user, stock=matchingStock)) == 0:
 			mapping = UserStockMapping()
 			mapping.user = request.user
@@ -107,8 +105,8 @@ def create(request):
 			newuser = User(username = request.POST['username'])
 			newuser.set_password(request.POST['password0'])
 			newuser.save()
-			string = 'Cool, we have created this account, ' + newuser.username
-			return HttpResponse(string)
+			string = 'We have created an account for: ' + newuser.username
+			return render(request, 'users/login.html', {'error' : string,} )
 		enteredusername = request.POST['username']
 		request.session['errors'] = error
 		request.session['enteredusername'] = enteredusername
