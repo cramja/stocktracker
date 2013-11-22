@@ -21,25 +21,26 @@
 	{% endfor %}
 	</ul>
 	{% endif %}
-
-	<form action="/users/create/" method="post">
-	{% csrf_token %}
-	<table>
-		<tr>
-			<td>Username:</td>
-			<td><input type="text" name="username" value="{{ enteredusername }}"></td>
-		</tr>
-		<tr>
-			<td>Password:</td>
-			<td><input type="password" name="password0"></td>
-		</tr>
-		<tr>
-			<td>Password (again):</td>
-			<td><input type="password" name="password1"></td>
-		</tr>
-		<tr><td><input type="submit" value="Submit"></td></tr>
-	</table>
-	</form>
+	<div class="container" >
+		<form action="/users/create/" method="post">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" name="username" value="{{ enteredusername }}"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="password0"></td>
+			</tr>
+			<tr>
+				<td>Password (again):</td>
+				<td><input type="password" name="password1"></td>
+			</tr>
+			<tr><td><input type="submit" value="Submit"></td></tr>
+		</table>
+		</form>
+	</div>
 	{% endif %}
 
 {% endblock %}

@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, authenticate, login as authlogin
+from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.views import login as loginview
 
 from models import Stock, UserStockMapping
@@ -16,19 +16,24 @@ def login2(request):
 		return loginview(request, template_name='users/login.html')
 
 def login(request):
+# old login function.
+# check out that code, oh yeah, so sophisticated
 	if request.user.is_authenticated(): #if the user is already logged in, redirect to the profile page
-		return HttpResponseRedirect('/users/profile/')
-		
+		return render(request, 'users/profile.html')
 	if(request.method == "POST"):
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None:
-			authlogin(request, user)
-			return HttpResponseRedirect('/users/profile', request)
+			auth_login(request, user)
+			return HttpResponseRedirect('/users/profile/', request)
 		else:
-			return HttpResponse('The username/password combo is incorrect')
+			error = 'The username/password combo is incorrect'
+			return render(
+				request, 
+				'users/login.html', 
+				{ 'error' : error, 'username' : request.POST['username'], }
+				)
 	else:
-		context = RequestContext(request)
-		return render_to_response('users/login.html', context)
+		return render(request, 'users/login.html')
 
 @login_required
 def logout_view(request):
@@ -37,7 +42,7 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-	return render_to_response('users/profile.html', {'stocks': UserStockMapping.objects.filter(user=request.user)})
+	return render_to_response('users/profile.html', {'stocks': UserStockMapping.objects.filter(user=request.user)}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -58,6 +63,21 @@ def addStock(request):
 			mapping.user = request.user
 			mapping.stock = matchingStock
 			mapping.save()
+		return redirect("/users/profile/")
+	else:
+		return redirect("/users/profile/")
+
+@login_required
+def removeStock(request):
+	if (request.method =="POST"):
+		stockNameToRemove = request.POST["stock"]
+		stock = Stock.objects.get(name=stockNameToRemove)
+		mapping = UserStockMapping.objects.get(user=request.user, stock=stock)
+		mapping.delete()
+		mappingsToStock = UserStockMapping.objects.filter(stock=stock)
+		# If there are no more references to the stock, it can be deleted
+		if (len(mappingsToStock) == 0):
+			stock.delete()
 		return redirect("/users/profile/")
 	else:
 		return redirect("/users/profile/")
