@@ -16,29 +16,15 @@ def login2(request):
 		return loginview(request, template_name='users/login.html')
 
 def login(request):
-<<<<<<< HEAD
 # old login function.
 # check out that code, oh yeah, so sophisticated
-=======
->>>>>>> origin/HEAD
 	if request.user.is_authenticated(): #if the user is already logged in, redirect to the profile page
-<<<<<<< HEAD
 		return render(request, 'users/profile.html')
-		
-	if(request.method == "POST"):
-		user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		if user is not None:
-			auth_login(request, user)
-			return redirect('/users/profile/')
-=======
-		return redirect('/users/profile/')
-
 	if(request.method == "POST"):
 		user = authenticate(username=request.POST['username'], password=request.POST['password'])
 		if user is not None:
 			authlogin(request, user)
 			return HttpResponseRedirect('/users/profile/', request)
->>>>>>> 7db5554a2125432bcc909ae7a46952525bc8afc7
 		else:
 			error = 'The username/password combo is incorrect'
 			return render(
