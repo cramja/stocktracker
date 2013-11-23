@@ -7,8 +7,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.views import login as loginview
 
-def stocks(request):
-	return render(request, "stocks/stocks.html")
+def index(request):
+	return render(request, 'stocks/base.html')
+	
+def quotes(request):
+	return render(request, 'stockview/quotes.html')
 
 def login(request):
 	if not request.user.is_authenticated() and request.method == "POST": 
