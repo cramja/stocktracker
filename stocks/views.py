@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout, authenticate, login as auth_login
+from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 from django.contrib.auth.views import login as loginview
 
 def index(request):
@@ -31,7 +31,7 @@ def login(request):
 	return redirect("/")
 
 def logout(request):
-	logout(request)
+	auth_logout(request)
 	return redirect("/")
 
 def create(request):
