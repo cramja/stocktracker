@@ -10,7 +10,7 @@
         {{stock.stock.name}}
         <form action="/users/remove_stock/" method="post">
         	{% csrf_token %}
-        	<input type="hidden" name="stock" value="{{stock.stock.name}}$">
+        	<input type="hidden" name="stock" value="{{stock.stock.name}}">
         	<input type="submit" value = "remove"/>
         </form>
     {% endfor %}
