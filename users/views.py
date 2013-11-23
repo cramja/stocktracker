@@ -56,7 +56,7 @@ def profile(request):
 @login_required
 def addStock(request):
 	if (request.method =="POST"):
-		stockNameToAdd = request.POST["stock"]
+		stockNameToAdd = request.POST["stock"].upper()
 		matchingStock = Stock.objects.filter(name=stockNameToAdd)
 		if (len(matchingStock) == 0):
 			matchingStock = Stock()
