@@ -66,7 +66,7 @@ DATABASES = {
 }
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'stocks/templates'), 
+    os.path.join(BASE_DIR, 'stocks/templates'),
 )
 
 # Internationalization
