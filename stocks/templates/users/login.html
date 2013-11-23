@@ -5,7 +5,7 @@
 	</div>
 {% else %}
 	<div>
-		<form action="/login/" method="post">
+		<form action="/login" method="post">
 			{% csrf_token %}
 			<h2>Please sign in</h2>
 			<div>{{ error }}</div>
@@ -13,6 +13,6 @@
 			<input type="password" placeholder="Password" name="password" required>
 			<button type="submit">Sign in</button>
 		</form>
-		<a href="/register/">Create Account</a>
+		<a href="/register">Create Account</a>
 	</div>
 {% endif %}

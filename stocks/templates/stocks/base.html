@@ -2,37 +2,17 @@
 <html lang="en">
 
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>Stock Tracker</title>
 </head>
 
 <body>
+    {% include 'users/login.html' %}
 
-    <div id="titlebar">
-        <h1>Stock Tracker App<h1>
-    </div>
+    {% include 'stockview/symbols.html' %}
 
-    <div id="userbar" style="float:right;">
-    	{% block userinfo %}
-    		{% if user.is_anonymous %}
-    			{% include 'users/login.html' %}
-    		{% else %}
-    			Hello <a href="">{{ user.username }}</a> 
-                <a href="logout">logout</a>
-    		{% endif %}
-    	{% endblock %}
-    </div>
+    {% include 'stockview/quotes.html' %}
 
-    <div id="content">
-    	{% include 'users/profile.html' %}
-    </div>
-    
-    
-    <div id="footer">
-        {% block footer %}
-        	
-        {% endblock %}
-    </div>
-
+    {% include 'stockview/graph.html' %}
 </body>
 
 </html>
