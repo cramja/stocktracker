@@ -40,7 +40,7 @@ def create(request):
 def register(request):
 	if request.user.is_authenticated():
 		return redirect("/")
-	return render('users/register.html')
+	return render(request, 'users/register.html')
 
 def create(request):
 	if request.method == "POST":
@@ -54,5 +54,5 @@ def create(request):
 			newuser.set_password(request.POST['password0'])
 			newuser.save()
 			string = 'We have created an account for: ' + newuser.username
-			return render("/")
+			return redirect("/")
 	return redirect("/register/")

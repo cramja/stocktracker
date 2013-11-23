@@ -10,4 +10,6 @@ urlpatterns = patterns('stocks.views',
 	url(r'^login', 'login'),
 	url(r'^logout', 'logout'),
 	url(r'^register', 'register'),
+	url(r'^create', 'create'),
+	url(r'^admin/', include(admin.site.urls)),
 )
