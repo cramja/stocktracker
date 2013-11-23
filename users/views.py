@@ -42,7 +42,15 @@ def logout_view(request):
 
 @login_required
 def profile(request):
-	return render_to_response('users/profile.html', {'stocks': UserStockMapping.objects.filter(user=request.user)}, context_instance=RequestContext(request))
+	vis_stocks = []
+	if "stock" in request.POST:
+		vis_stocks = request.POST.getlist("stock")
+	return render_to_response(
+		'users/profile.html', 
+		{'stocks': UserStockMapping.objects.filter(user=request.user),
+		'vis_stocks' : vis_stocks, }, 
+		context_instance=RequestContext(request)
+	)
 
 
 @login_required

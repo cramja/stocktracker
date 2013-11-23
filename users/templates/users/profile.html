@@ -5,14 +5,28 @@
 {% block content %}
 <h2>Your stocks</h2>
 
-{%for stock in stocks %}
-    <form action="/users/remove_stock/" method="post">{% csrf_token %}
+    Remove:
+	{%for stock in stocks %}
         {{stock.stock.name}}
-        <input type="hidden" name="stock" value="{{stock.stock.name}}"/>
-        <input type="submit" value = "remove"/>
+        <form action="/users/remove_stock/" method="post">
+        	{% csrf_token %}
+        	<input type="hidden" name="stock" value="{{stock.stock.name}}$">
+        	<input type="submit" value = "remove"/>
+        </form>
+    {% endfor %}
+    <strong>Visualize:</strong>
+    <form action="/users/profile/" method="post">
+    {% csrf_token %}
+        <!--<select multiple>-->
+        	{%for stock in stocks %}
+    	        {{stock.stock.name}}
+    	        <input type="checkbox" name="stock{{for.count}}" value="{{stock.stock.name}}"/>
+    	    {% endfor %}
+        <!--</select>-->
+	    <input type="submit" value="Visualize Checked"/>
     </form>
-    <br/>
-{% endfor %}
+
+
 
 <h2>Add a stock</h2>
 
@@ -22,3 +36,12 @@
 </form>
 
 {% endblock %}
+
+{% block view %}
+
+{% include "stockview/stocks.html" %}
+
+{% endblock %}
+
+{% if showview %}
+{% endif %}
