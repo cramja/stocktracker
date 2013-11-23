@@ -4,7 +4,7 @@
 {% block content %}
 <h2>Your stocks</h2>
 
-    Remove:
+    <p>Remove:
 	{%for stock in stocks %}
         {{stock.stock.name}}
         <form action="/users/remove_stock/" method="post">
@@ -12,8 +12,8 @@
         	<input type="hidden" name="stock" value="{{stock.stock.name}}">
         	<input type="submit" value = "remove"/>
         </form>
-    {% endfor %}
-    <strong>Visualize:</strong>
+    {% endfor %}</p>
+    <p><strong>Visualize:</strong>
     <form action="/users/profile/" method="post">
     {% csrf_token %}
         <!--<select multiple>-->
@@ -23,7 +23,7 @@
     	    {% endfor %}
         <!--</select>-->
 	    <input type="submit" value="Visualize Checked"/>
-    </form>
+    </form></p>
 
 
 
