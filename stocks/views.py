@@ -11,13 +11,17 @@ from django.core.exceptions import ObjectDoesNotExist
 from stocks.models import Stock, UserProfile
 
 def index(request):
-	profile = UserProfile.objects.get(user=request.user)
-	stocks_codes = profile.interests.all()
-	all_stocks = list()
-	for stock in Stock.objects.all():
-		if stock not in stocks_codes:
-			all_stocks.append(stock)
-	return render(request, 'stocks/base.html', {'stocks': stocks_codes, 'stocks_codes': all_stocks})
+	if request.user.is_authenticated():
+		# profile = UserProfile.objects.get(user=request.user)
+		profile = request.user.profile
+		stocks_codes = profile.interests.all()
+		all_stocks = list()
+		for stock in Stock.objects.all():
+			if stock not in stocks_codes:
+				all_stocks.append(stock)
+		return render(request, 'stocks/base.html', {'stocks': stocks_codes, 'stocks_codes': all_stocks})
+	else:
+		return render(request, 'stocks/base.html')
 	
 def quotes(request):
 	return render(request, 'stockview/quotes.html')
