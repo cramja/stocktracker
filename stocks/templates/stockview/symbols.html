@@ -1,28 +1,6 @@
-<script>
-	function getStocks() {
-        alert("wtf");
-        $.getJSON('/getStocks/', renderStocks);
-    }
-	
-	function renderStocks(data) {
-		document.write("here");
-		htmltoinsert = '<form name="addStock" action="/add_stock" method="post">'
-		htmltoinsert += '<input type="submit" value="Submit"/>'
-		htmltoinsert += '<select name ="stock">'
-		$.each(data,function(k,v){
-			htmltoinsert += '<option value='+v.code+'name='+v.code+'>'+v.code+' 'v.name+'</option>'
-        }
-		htmltoinsert += '</select>'
-		htmltoinsert += '<input type="submit" value="Submit">'
-		htmltoinsert += '</form>'
-		$('#add').prepend(htmltoinsert);
-     };
-</script>
-
 {% if user.is_authenticated %}
 
 <h2>Your stocks</h2>
-    <button onclick="getStocks">ewkoewke</button>
     <p>Remove:
 	{%for stock in stocks %}
         {{stock.stock.name}}
@@ -43,6 +21,33 @@
     </form></p>
 
 <h2>Add a stock</h2>
-<div id="add"></div>
+<form action="/add_stock" method="post">
+<select name="stock">
+    {% for s in stocks_codes %}
+        <option value="{{s.code}}">{{s.code}}</option>
+    {% endfor %}
+</select>
+<input type="submit" value="Submit">
+</form>
 
+// <script>
+//  function getStocks() {
+//         alert("wtf");
+//         $.getJSON('/getStocks/', renderStocks);
+//     }
+    
+//  function renderStocks(data) {
+//      document.write("here");
+//      htmltoinsert = '<form name="addStock" action="/add_stock" method="post">'
+//      htmltoinsert += '<input type="submit" value="Submit"/>'
+//      htmltoinsert += '<select name ="stock">'
+//      $.each(data,function(k,v){
+//          htmltoinsert += '<option value='+v.code+'name='+v.code+'>'+v.code+' 'v.name+'</option>'
+//         }
+//      htmltoinsert += '</select>'
+//      htmltoinsert += '<input type="submit" value="Submit">'
+//      htmltoinsert += '</form>'
+//      $('#add').prepend(htmltoinsert);
+//      };
+// </script>
 {% endif %}

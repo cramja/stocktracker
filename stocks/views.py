@@ -11,7 +11,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from stocks.models import Stock
 
 def index(request):
-	return render(request, 'stocks/base.html')
+	stocks_codes = Stock.objects.filter()
+	print stocks_codes
+	return render(request, 'stocks/base.html', {'stocks_codes': stocks_codes})
 	
 def quotes(request):
 	return render(request, 'stockview/quotes.html')
