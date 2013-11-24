@@ -1,8 +1,31 @@
 {% if user.is_authenticated %}
 
 <h2>Your stocks</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Ccode</th>
+        <th>Name</th>
+        <th>Select</th>
+    </tr>
+    </thead>
+    <form id="removeStocks" action="/remove_stock" method="post">
+    {% csrf_token %}
+    {% for stock in user_stocks %}
+        <tr>
+            <td>{{stock.code}}</td>
+            <td>{{stock.name}}</td>
+            <td><input type="checkbox" name="stock" value="{{stock.code}}"/></td>
+        <tr>
+    {% endfor %}
+    </form>
+</table>
+
+<button onclick="submitRemoveStocks()">Remove</button>
+
     <p>Your stocks:
-	{%for stock in stocks %}
+	{%for stock in user_stocks %}
         {{stock.name}} ({{stock.code}})
         <form action="/remove_stock" method="post">
         	{% csrf_token %}
@@ -13,7 +36,7 @@
     <p>Visualize:
     <form action="/visualize" method="post">
     {% csrf_token %}
-    	{%for stock in stocks %}
+    	{%for stock in user_stocks %}
             {{stock.name}}
             <input type="checkbox" name="stock{{for.count}}" value="{{stock.code}}"/>
         {% endfor %}
@@ -24,7 +47,7 @@
 <form action="/add_stock" method="post">
     {% csrf_token %}
 <select name="stock">
-    {% for s in stocks_codes %}
+    {% for s in other_stocks %}
         <option value="{{s.code}}">{{s.code}}</option>
     {% endfor %}
 </select>
@@ -32,23 +55,8 @@
 </form>
 
 <script>
-//  function getStocks() {
-//         alert("wtf");
-//         $.getJSON('/getStocks/', renderStocks);
-//     }
-    
-//  function renderStocks(data) {
-//      document.write("here");
-//      htmltoinsert = '<form name="addStock" action="/add_stock" method="post">'
-//      htmltoinsert += '<input type="submit" value="Submit"/>'
-//      htmltoinsert += '<select name ="stock">'
-//      $.each(data,function(k,v){
-//          htmltoinsert += '<option value='+v.code+'name='+v.code+'>'+v.code+' 'v.name+'</option>'
-//         }
-//      htmltoinsert += '</select>'
-//      htmltoinsert += '<input type="submit" value="Submit">'
-//      htmltoinsert += '</form>'
-//      $('#add').prepend(htmltoinsert);
-//      };
+    function submitRemoveStocks() {
+        document.getElementById("removeStocks").submit();
+    }
 </script>
 {% endif %}
