@@ -6,8 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 from django.contrib.auth.views import login as loginview
+from django.core.exceptions import ObjectDoesNotExist
 
-from stocks.models import Stock, UserStockMapping
+from stocks.models import Stock
 
 def index(request):
 	return render(request, 'stocks/base.html')
@@ -56,33 +57,43 @@ def create(request):
 			return redirect("/")
 	return redirect("/register/")
 
+def getStocks(request):
+    """
+    Gets all of the stocks from the database and converts them
+    to JSON with the associated metadata
+    """
+    stocks = Stock.objects.all()
+    if not messages.exists:
+        return HttpResponse("{}")
+
+    if request.method == "GET":
+        retList = list()
+        for s in stocks:
+            retList.append({
+                "code": s.code,
+                "name": s.name
+            })
+
+        return HttpResponse(json.dumps(retList))
+
 @login_required
 def addStock(request):
-	if (request.method =="POST"):
-		stockNameToAdd = request.POST["stock"].upper()
-		matchingStock = Stock.objects.filter(name=stockNameToAdd)
-		if (len(matchingStock) == 0):
-			matchingStock = Stock()
-			matchingStock.name = stockNameToAdd
-			matchingStock.save()
-		else:
-			matchingStock = matchingStock[0]
-		if len(UserStockMapping.objects.filter(user=request.user, stock=matchingStock)) == 0:
-			mapping = UserStockMapping()
-			mapping.user = request.user
-			mapping.stock = matchingStock
-			mapping.save()
-	return redirect("/")
+	if (request.method == 'POST'):
+		stockID = request.POST['code'].upper()
+		stockName = request.POST['name'].upper()
+		matchingStock, added = Stock.objects.get_or_create(code=stockID, name=stockName)
+		matchingStock.save()
+	return render(request, 'stocks/base.html', {'fromAdd': True, 'added': added, 'stockID': stockID})
 
 @login_required
 def removeStock(request):
-	if (request.method =="POST"):
-		stockNameToRemove = request.POST["stock"]
-		stock = Stock.objects.get(name=stockNameToRemove)
-		mapping = UserStockMapping.objects.get(user=request.user, stock=stock)
-		mapping.delete()
-		mappingsToStock = UserStockMapping.objects.filter(stock=stock)
-		# If there are no more references to the stock, it can be deleted
-		if (len(mappingsToStock) == 0):
-			stock.delete()
-	return redirect("")
+	if (request.method == 'POST'):
+		stockID = request.POST['code'].upper()
+		removed = False
+		try:
+			matchingStock = Stock.objects.get(code=stockID)
+			matchingStock.users.remove(User)
+			removed = True
+		except ObjectDoesNotExist:
+			pass
+	return render(request, 'stocks/base.html', {'fromRemove': True, 'removed': removed, 'stockID': stockID})

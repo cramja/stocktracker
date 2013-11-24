@@ -1,0 +1,58 @@
+[
+  {
+    "model": "stocks.Stock",
+    "pk": 1,
+    "fields": {
+      "code": "ABF",
+      "name": "A.B.FOOD"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 2,
+    "fields": {
+      "code": "ADN",
+      "name": "ABDN.ASSET.MAN"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 3,
+    "fields": {
+      "code": "ADM",
+      "name": "ADMIRAL GRP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 4,
+    "fields": {
+      "code": "AGK",
+      "name": "AGGREKO"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 5,
+    "fields": {
+      "code": "AMEC",
+      "name": "AMEC"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 6,
+    "fields": {
+      "code": "AAL",
+      "name": "ANGLO AMERICAN"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 7,
+    "fields": {
+      "code": "ANTO",
+      "name": "ANTOFAGASTA"
+    }
+  }
+]

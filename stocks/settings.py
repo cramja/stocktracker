@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'stockview',
     'users',
+    'stocks'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,8 +66,14 @@ DATABASES = {
     }
 }
 
+AUTH_PROFILE_MODULE = "stocks.UserProfile"
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'stocks/templates'),
+)
+
+FIXTURE_DIRS = (
+    os.path.join(BASE_DIR, 'stocks/fixtures'),
 )
 
 # Internationalization

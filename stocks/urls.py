@@ -12,6 +12,7 @@ urlpatterns = patterns('stocks.views',
 	url(r'^register$', 'register'),
 	url(r'^create$', 'create'),
 
+	url(r'^get_stocks$', 'getStocks'),
 	url(r'^add_stock$', 'addStock'),
 	url(r'^remove_stock$', 'removeStock'),
 

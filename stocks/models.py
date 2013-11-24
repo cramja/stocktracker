@@ -2,8 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Stock(models.Model):
-    name = models.CharField(max_length=20, primary_key=True)
+    code = models.CharField(max_length=10, primary_key=True)
+    name = models.CharField(max_length=100)
 
-class UserStockMapping(models.Model):
-    user = models.ForeignKey(User)
-    stock = models.ForeignKey(Stock)
+class UserProfile(models.Model):
+	user = models.ForeignKey(User, primary_key=True, unique=True)	
+	interests = models.ManyToManyField(Stock)
+
+User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
