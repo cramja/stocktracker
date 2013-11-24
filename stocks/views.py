@@ -18,10 +18,10 @@ def index(request):
 		for stock in Stock.objects.all():
 			if stock not in stocks_codes:
 				all_stocks.append(stock)
-		return render(request, 'stocks/base.html', {'stocks': stocks_codes, 'stocks_codes': all_stocks})
+		return render(request, 'base.html', {'stocks': stocks_codes, 'stocks_codes': all_stocks})
 	else:
-		return render(request, 'stocks/base.html')
-	
+		return render(request, 'base.html', {'stocks_codes': Stock.objects.all()})
+
 def quotes(request):
 	return render(request, 'stockview/quotes.html')
 
