@@ -3,13 +3,15 @@
 <script type="text/javascript">
     
     var stockFunction = null;
+	
     
     (
         function($) {
     
             function printStock(data) {
-                console.log(data);
-                if (data.query.results.quote[0].High) {
+				try{
+					console.log(data);
+					if (data.query.results.quote[0].High) {
                     for (var i = 0; i < data.query.count; i++) {
                         document.getElementById("output").innerHTML += "<pre>" + 
                         "   " + data.query.results.quote[i].date +
@@ -32,6 +34,12 @@
                         "</pre>";
                     }
                 }
+				}
+				catch (err) {
+				
+					alert("Unable to fetch stocks, try increasing your date range");
+				
+				}
                 document.getElementById("getstockbutton").value = "Get Stocks";
             }
 
@@ -73,10 +81,16 @@
 	
 	Stock Label: <input type="text" id="stock" placeholder="prefix indexes with '^'"/>
 	
-	Start Date: <input type="date" id="start" />
+	Start Date: <input type="date" id="start"/>
 	
 	End Date: <input type="date" id="end" />
+	
+	<script type="text/javascript">
+		document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+		document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+	</script>
 	
 	<input type="button" id="getstockbutton" onclick="updateStock()" value="Get Stocks" />
 	
 	<div id="output" ><pre>	Date		Open	High	Low	Close	Volume</pre></div>
+
