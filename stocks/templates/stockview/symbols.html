@@ -22,36 +22,16 @@
     </form>
 </table>
 
-<button onclick="submitRemoveStocks()">Remove</button>
+<br /><button onclick="submitRemoveStocks()">Remove</button>
 
-    <p>Your stocks:
-    {%for stock in user_stocks %}
-        {{stock.name}} ({{stock.code}})
-        <form action="/remove_stock" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="stock" value="{{stock.code}}">
-            <input type="submit" value = "remove"/>
-        </form>
-    {% endfor %}</p>
-    <p>Visualize:
-    <form action="/visualize" method="post">
+<br /><br /><form id="addStock" action="/add_stock" method="post">
     {% csrf_token %}
-        {%for stock in user_stocks %}
-            {{stock.name}}
-            <input type="checkbox" name="stock{{for.count}}" value="{{stock.code}}"/>
-        {% endfor %}
-    <input type="submit" value="Visualize Checked"/>
-    </form></p>
-
-<h2>Add a stock</h2>
-<form action="/add_stock" method="post">
-    {% csrf_token %}
-<select name="stock">
+    <select name="stock">
     {% for s in other_stocks %}
         <option value="{{s.code}}">{{s.code}}</option>
     {% endfor %}
-</select>
-<input type="submit" value="Submit">
+    </select>
+<input type="submit" value="Add">
 </form>
 
 <script>
@@ -60,3 +40,22 @@
     }
 </script>
 {% endif %}
+    <!-- <p>Your stocks:
+    {% for stock in user_stocks %}
+        {{stock.name}} ({{stock.code}})
+        <form action="/remove_stock" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="stock" value="{{stock.code}}">
+            <input type="submit" value = "remove"/>
+        </form>
+    {% endfor %}</p> -->
+
+    <!--     <p>Visualize:
+    <form action="/visualize" method="post">
+    {% csrf_token %}
+        {%for stock in user_stocks %}
+            {{stock.name}}
+            <input type="checkbox" name="stock{{for.count}}" value="{{stock.code}}"/>
+        {% endfor %}
+    <input type="submit" value="Visualize Checked"/>
+    </form></p> -->
