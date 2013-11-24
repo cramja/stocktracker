@@ -1,12 +1,12 @@
 {% if user.is_authenticated %}
 
 <h2>Your stocks</h2>
-    <p>Remove:
+    <p>Your stocks:
 	{%for stock in stocks %}
-        {{stock.stock.name}}
+        {{stock.name}} ({{stock.code}})
         <form action="/remove_stock" method="post">
         	{% csrf_token %}
-        	<input type="hidden" name="stock" value="{{stock.stock.name}}">
+        	<input type="hidden" name="stock" value="{{stock.code}}">
         	<input type="submit" value = "remove"/>
         </form>
     {% endfor %}</p>
@@ -14,8 +14,8 @@
     <form action="/visualize" method="post">
     {% csrf_token %}
     	{%for stock in stocks %}
-            {{stock.stock.name}}
-            <input type="checkbox" name="stock{{for.count}}" value="{{stock.stock.name}}"/>
+            {{stock.name}}
+            <input type="checkbox" name="stock{{for.count}}" value="{{stock.code}}"/>
         {% endfor %}
 	<input type="submit" value="Visualize Checked"/>
     </form></p>
