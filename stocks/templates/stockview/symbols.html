@@ -22,6 +22,7 @@
 
 <h2>Add a stock</h2>
 <form action="/add_stock" method="post">
+    {% csrf_token %}
 <select name="stock">
     {% for s in stocks_codes %}
         <option value="{{s.code}}">{{s.code}}</option>
