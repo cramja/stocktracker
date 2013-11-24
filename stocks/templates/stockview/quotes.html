@@ -9,8 +9,9 @@
         function($) {
     
             function printStock(data) {
-                console.log(data);
-                if (data.query.results.quote[0].High) {
+				try{
+					console.log(data);
+					if (data.query.results.quote[0].High) {
                     for (var i = 0; i < data.query.count; i++) {
                         document.getElementById("output").innerHTML += "<pre>" + 
                         "   " + data.query.results.quote[i].date +
@@ -33,6 +34,12 @@
                         "</pre>";
                     }
                 }
+				}
+				catch (err) {
+				
+					alert("Unable to fetch stocks, try increasing your date range");
+				
+				}
                 document.getElementById("getstockbutton").value = "Get Stocks";
             }
 
