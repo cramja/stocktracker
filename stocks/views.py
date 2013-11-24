@@ -14,12 +14,12 @@ def index(request):
 	if request.user.is_authenticated():
 		# profile = UserProfile.objects.get(user=request.user)
 		profile = request.user.profile
-		stocks_codes = profile.interests.all()
-		all_stocks = list()
+		user_stocks = profile.interests.all()
+		other_stocks = list()
 		for stock in Stock.objects.all():
-			if stock not in stocks_codes:
-				all_stocks.append(stock)
-		return render(request, 'stocks/base.html', {'stocks': stocks_codes, 'stocks_codes': all_stocks})
+			if stock not in user_stocks:
+				other_stocks.append(stock)
+		return render(request, 'stocks/base.html', {'user_stocks': user_stocks, 'other_stocks': other_stocks})
 	else:
 		return render(request, 'stocks/base.html')
 	
@@ -98,9 +98,10 @@ def addStock(request):
 @login_required
 def removeStock(request):
 	if (request.method == 'POST'):
-		print request.POST
-		stockID = request.POST['stock'].upper()
-		matchingStock = Stock.objects.get(code=stockID)
-		profile = UserProfile.objects.get(user=request.user)
-		profile.interests.remove(matchingStock)
+		checkboxes = request.POST.getlist('stock')
+		user_stocks = request.user.profile.interests
+		for box in checkboxes:
+			print box
+			matchingStock = Stock.objects.get(code=box)
+			user_stocks.remove(matchingStock)
 	return redirect("/")
