@@ -12,7 +12,6 @@ from stocks.models import Stock, UserProfile
 
 def index(request):
 	if request.user.is_authenticated():
-		# profile = UserProfile.objects.get(user=request.user)
 		profile = request.user.profile
 		stocks_codes = profile.interests.all()
 		all_stocks = list()
