@@ -1,18 +1,18 @@
 {% if user.is_authenticated %}
-	<div>
-		{{ user.username }}
-		<a href="/logout">Logout</a>
-	</div>
+    <div>
+        {{ user.username }}
+        <a href="/logout">Logout</a>
+    </div>
 {% else %}
-	<div>
-		<form action="/login" method="post">
-			{% csrf_token %}
-			<h2>Please sign in</h2>
-			<div>{{ error }}</div>
-			<input type="text" placeholder="Username" name="username" required autofocus value="{{ username }}">
-			<input type="password" placeholder="Password" name="password" required>
-			<button type="submit">Sign in</button>
-		</form>
-		<a href="/register">Create Account</a>
-	</div>
+    <div>
+        <form action="/login" method="post">
+            {% csrf_token %}
+            <h2>Please sign in</h2>
+            <div>{{ error }}</div>
+            <input type="text" placeholder="Username" name="username" required autofocus value="{{ username }}">
+            <input type="password" placeholder="Password" name="password" required>
+            <button type="submit">Sign in</button>
+        </form>
+        <a href="/register">Create Account</a>
+    </div>
 {% endif %}
