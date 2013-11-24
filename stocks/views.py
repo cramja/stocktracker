@@ -1,14 +1,10 @@
-from django.shortcuts import get_object_or_404, render_to_response, redirect, render
-from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
-from django.template import RequestContext
+from django.shortcuts import redirect, render
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
-from django.contrib.auth.views import login as loginview
-from django.core.exceptions import ObjectDoesNotExist
 
-from stocks.models import Stock, UserProfile
+from models import Stock
 
 def index(request):
     if request.user.is_authenticated():
@@ -16,14 +12,12 @@ def index(request):
         userStocks = profile.interests.all()
         # any stock that is not in userStocks
         otherStocks = Stock.objects.exclude(pk__in=userStocks.values_list('pk', flat=True))
-        print "userStocks:", userStocks
-        print "otherStocks:", otherStocks
         return render(request, 'base.html', {'user_stocks': userStocks, 'other_stocks': otherStocks})
     else:
         return render(request, 'base.html', {'stocks_codes': Stock.objects.all()})
 
 def login(request):
-    if not request.user.is_authenticated() and request.method == "POST": 
+    if not request.user.is_authenticated() and request.method == "POST":
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
         if user is not None:
             auth_login(request, user)
