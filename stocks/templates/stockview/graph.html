@@ -1,32 +1,28 @@
 <script>
-    
     setInterval(
-        
-        function updateImage() {
+        function() {
             var stock = document.getElementById("stock").value;
             var time = document.getElementById("time").value;
             var chart = document.getElementById("charttype").value;
             var scale = document.getElementById("scale").value;
             var size = document.getElementById("size").value;
             var region = document.getElementById("region").value;
-            var language = document.getElementById("language").value;
             var addstocks = document.getElementById("addstock").value;
-            document.getElementById("chart").src="http://chart.finance.yahoo.com/z?s=" + stock + "&t=" + time + "&q=" + chart + "&l=" + scale + "&z=" + size + "&c=" + addstocks + "&region=" + region + "&lang=" + language;
-            }, 
-    5000);
-
+            document.getElementById("chart").src="http://chart.finance.yahoo.com/z?s=" + stock + "&t=" + time + "&q=" + chart + "&l=" + scale + "&z=" + size + "&c=" + addstocks + "&region=" + region + "&lang=en-GB";
+            }, 5000);
 </script>
 
 <h2>Stock Visualisation</h2>
 
 <p>Please select your stock preferences:</p>
 
-Stock Label:
-<input type="text" id="stock" placeholder="prefix indexes with '^'"/>
-Additional Stocks: 
+Stock:
+<input type="text" id="stock" placeholder="prefix indexes with '^'" size="10"/>
+
+Additional Stocks:
 <input type="text" id="addstock"/>
 
-Time: 
+Time:
 <select id="time">
     <option value="1d">1 Day</option>
     <option value="5d">5 Days</option>
@@ -38,14 +34,14 @@ Time:
     <option value="my">Maximum</option>
 </select>
 
-Chart: 
+Chart:
 <select id="charttype">
     <option value="l">Line</option>
     <option value="b">Bar</option>
     <option value="c">Candle</option>
 </select>
 
-Scale: 
+Scale:
 <select id="scale">
     <option value="on">Logarithmic</option>
     <option value="off">Arithmetic</option>
@@ -58,10 +54,9 @@ Size:
     <option value="s">Small</option>
 </select>
 
-Region: 
-<input type="text" id="region" value="GB"/>
+Region:
+<input type="text" id="region" value="GB" size="3"/>
 
-Language:
-<input type="text" id="language" value="en-GB"/>
-
-<p style="text-align:center"><img src="" id="chart" alt="Chart" ></p>
+<p style="text-align:center">
+    <img src="" id="chart" >
+</p>

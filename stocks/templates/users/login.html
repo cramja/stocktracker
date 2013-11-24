@@ -5,8 +5,7 @@
     </div>
 {% else %}
     <div>
-        <form action="/login" method="post">
-            {% csrf_token %}
+        <form action="/login" method="post"> {% csrf_token %}
             <h2>Please sign in</h2>
             <div>{{ error }}</div>
             <input type="text" placeholder="Username" name="username" required autofocus value="{{ username }}">

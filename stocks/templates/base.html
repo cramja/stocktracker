@@ -1,6 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html lang="en">
-
+<!DOCTYPE HTML>
 <head>
     <title>Stock Tracker</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -10,16 +8,18 @@
 
 <body>
     <div style="float:right">
-    {% include 'users/login.html' %}
+        {% include 'users/login.html' %}
     </div>
+    {% if user.is_authenticated %}
+        {% include 'stockview/symbols.html' %}
+    {% endif %}
 
-    {% include 'stockview/symbols.html' %}
-
-    {% include 'stockview/recommendation.html' %}
+    {% if user.is_authenticated %}
+        {% include 'stockview/recommendation.html' %}
+    {% endif %}
 
     {% include 'stockview/quotes.html' %}
 
     {% include 'stockview/graph.html' %}
 </body>
-
 </html>
