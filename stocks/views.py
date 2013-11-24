@@ -98,12 +98,9 @@ def addStock(request):
 @login_required
 def removeStock(request):
 	if (request.method == 'POST'):
-		stockID = request.POST['code'].upper()
-		removed = False
-		try:
-			matchingStock = Stock.objects.get(code=stockID)
-			matchingStock.users.remove(User)
-			removed = True
-		except ObjectDoesNotExist:
-			pass
-	return render(request, 'stocks/base.html', {'fromRemove': True, 'removed': removed, 'stockID': stockID})
+		print request.POST
+		stockID = request.POST['stock'].upper()
+		matchingStock = Stock.objects.get(code=stockID)
+		profile = UserProfile.objects.get(user=request.user)
+		profile.interests.remove(matchingStock)
+	return redirect("/")
