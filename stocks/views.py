@@ -12,7 +12,6 @@ from stocks.models import Stock, UserProfile
 
 def index(request):
 	if request.user.is_authenticated():
-		# profile = UserProfile.objects.get(user=request.user)
 		profile = request.user.profile
 		user_stocks = profile.interests.all()
 		other_stocks = list()
@@ -100,8 +99,7 @@ def removeStock(request):
 	if (request.method == 'POST'):
 		checkboxes = request.POST.getlist('stock')
 		user_stocks = request.user.profile.interests
-		for box in checkboxes:
-			print box
-			matchingStock = Stock.objects.get(code=box)
+		for stock in checkboxes:
+			matchingStock = Stock.objects.get(code=stock)
 			user_stocks.remove(matchingStock)
 	return redirect("/")
