@@ -21,10 +21,11 @@
 <br/>
 
 <button onclick="submitRemoveStocks()">Remove</button>
+<button onclick="visualizeStocks()">Visualize</button>
 <br/>
 <br/>
 
-<form id="addStock" action="/add_stock" method="post">{% csrf_token %}
+<form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
     <select name="stock">
         {% for s in other_stocks %}
             <option value="{{s.code}}">{{s.code}}</option>
@@ -36,5 +37,17 @@
 <script>
     function submitRemoveStocks() {
         document.getElementById("removeStocks").submit();
+    }
+    function visualizeStocks() {
+        checkedStocks = $("input:checkbox[name=stock]:checked");
+        stock_label = checkedStocks[0].value;
+        additional_stocks = "";
+        for (int i = 1; i < checkedStocks.length; i++) {
+            additional_stocks += checkedStocks[i].value
+            if (i != checkedStocks.length-1
+                additional_stocks += ', '
+        }
+        $('#stock_label').text(stock_label);
+        $('#additional_stocks').text(additional_stocks);
     }
 </script>

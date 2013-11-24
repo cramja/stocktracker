@@ -1,14 +1,14 @@
 <script>
     setInterval(
         function() {
-            var stock = document.getElementById("stock").value;
+            var stock_label = document.getElementById("stock_label").value;
             var time = document.getElementById("time").value;
             var chart = document.getElementById("charttype").value;
             var scale = document.getElementById("scale").value;
             var size = document.getElementById("size").value;
             var region = document.getElementById("region").value;
-            var addstocks = document.getElementById("addstock").value;
-            document.getElementById("chart").src="http://chart.finance.yahoo.com/z?s=" + stock + "&t=" + time + "&q=" + chart + "&l=" + scale + "&z=" + size + "&c=" + addstocks + "&region=" + region + "&lang=en-GB";
+            var additional_stocks = document.getElementById("additional_stocks").value;
+            document.getElementById("chart").src="http://chart.finance.yahoo.com/z?s=" + stock_label + "&t=" + time + "&q=" + chart + "&l=" + scale + "&z=" + size + "&c=" + additional_stocks + "&region=" + region + "&lang=en-GB";
             }, 5000);
 </script>
 
@@ -17,10 +17,9 @@
 <p>Please select your stock preferences:</p>
 
 Stock:
-<input type="text" id="stock" placeholder="prefix indexes with '^'" size="10"/>
-
+<input type="text" id="stock_label" placeholder="prefix indexes with '^'" size="10"/>
 Additional Stocks:
-<input type="text" id="addstock"/>
+<input type="text" id="additional_stocks"/>
 
 Time:
 <select id="time">
