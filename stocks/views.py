@@ -8,7 +8,7 @@ from django.contrib.auth import logout as auth_logout, authenticate, login as au
 from django.contrib.auth.views import login as loginview
 from django.core.exceptions import ObjectDoesNotExist
 
-from stocks.models import Stock
+from stocks.models import Stock, UserProfile
 
 def index(request):
 	stocks_codes = Stock.objects.filter()
@@ -81,11 +81,11 @@ def getStocks(request):
 @login_required
 def addStock(request):
 	if (request.method == 'POST'):
-		stockID = request.POST['code'].upper()
-		stockName = request.POST['name'].upper()
-		matchingStock, added = Stock.objects.get_or_create(code=stockID, name=stockName)
-		matchingStock.save()
-	return render(request, 'stocks/base.html', {'fromAdd': True, 'added': added, 'stockID': stockID})
+		stockID = request.POST['stock'].upper()
+		matchingStock = Stock.objects.get(code=stockID)
+		profile, created = UserProfile.objects.get_or_create(user=request.user)
+		profile.interests.add(matchingStock)
+	return redirect("/")
 
 @login_required
 def removeStock(request):
