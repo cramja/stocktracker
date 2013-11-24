@@ -54,5 +54,757 @@
       "code": "ANTO",
       "name": "ANTOFAGASTA"
     }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 8,
+    "fields": {
+      "code": "ARM",
+      "name": "ARM HLDGS"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 9,
+    "fields": {
+      "code": "AZN",
+      "name": "ASTRAZENECA"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 10,
+    "fields": {
+      "code": "AV",
+      "name": "AVIVA"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 11,
+    "fields": {
+      "code": "BAB",
+      "name": "BABCOCK INTL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 12,
+    "fields": {
+      "code": "BA",
+      "name": "BAE SYS"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 13,
+    "fields": {
+      "code": "BARC",
+      "name": "BARCLAYS"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 14,
+    "fields": {
+      "code": "BG",
+      "name": "BG GRP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 15,
+    "fields": {
+      "code": "BLT",
+      "name": "BHP BILLITON"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 16,
+    "fields": {
+      "code": "BP",
+      "name": "BP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 17,
+    "fields": {
+      "code": "BATS",
+      "name": "BR.AMER.TOB"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 18,
+    "fields": {
+      "code": "BLND",
+      "name": "BR.LAND"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 19,
+    "fields": {
+      "code": "BSY",
+      "name": "BSKYB"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 20,
+    "fields": {
+      "code": "BT.A",
+      "name": "BT GROUP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 21,
+    "fields": {
+      "code": "BNZL",
+      "name": "BUNZL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 22,
+    "fields": {
+      "code": "BRBY",
+      "name": "BURBERRY GRP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 23,
+    "fields": {
+      "code": "CPI",
+      "name": "CAPITA GROUP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 24,
+    "fields": {
+      "code": "CCL",
+      "name": "CARNIVAL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 25,
+    "fields": {
+      "code": "CNA",
+      "name": "CENTRICA"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 26,
+    "fields": {
+      "code": "CCH",
+      "name": "COCACOLA HBC AG"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 27,
+    "fields": {
+      "code": "CPG",
+      "name": "COMPASS GROUP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 28,
+    "fields": {
+      "code": "CRH",
+      "name": "CRH"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 29,
+    "fields": {
+      "code": "CRDA",
+      "name": "CRODA INTL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 30,
+    "fields": {
+      "code": "DGE",
+      "name": "DIAGEO"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 31,
+    "fields": {
+      "code": "EZJ",
+      "name": "EASYJET"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 32,
+    "fields": {
+      "code": "EXPN",
+      "name": "EXPERIAN"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 33,
+    "fields": {
+      "code": "FRES",
+      "name": "FRESNILLO"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 34,
+    "fields": {
+      "code": "GFS",
+      "name": "G4S"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 35,
+    "fields": {
+      "code": "GKN",
+      "name": "GKN"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 36,
+    "fields": {
+      "code": "GSK",
+      "name": "GLAXOSMITHKLINE"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 37,
+    "fields": {
+      "code": "GLEN",
+      "name": "GLENCORE XSTRA"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 38,
+    "fields": {
+      "code": "HMSO",
+      "name": "HAMMERSON"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 39,
+    "fields": {
+      "code": "HL",
+      "name": "HARGREAVES LANS"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 40,
+    "fields": {
+      "code": "HSBA",
+      "name": "HSBC HLDGS.UK"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 41,
+    "fields": {
+      "code": "IMI",
+      "name": "IMI"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 42,
+    "fields": {
+      "code": "IMT",
+      "name": "IMP.TOBACCO GRP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 43,
+    "fields": {
+      "code": "IHG",
+      "name": "INTERCON.HOTEL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 44,
+    "fields": {
+      "code": "ITRK",
+      "name": "INTERTEK GROUP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 45,
+    "fields": {
+      "code": "IAG",
+      "name": "INTL CONSOL AIR"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 46,
+    "fields": {
+      "code": "ITV",
+      "name": "ITV"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 47,
+    "fields": {
+      "code": "JMAT",
+      "name": "JOHNSON MATTHEY"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 48,
+    "fields": {
+      "code": "KGF",
+      "name": "KINGFISHER"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 49,
+    "fields": {
+      "code": "LAND",
+      "name": "LAND SECS"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 50,
+    "fields": {
+      "code": "LGEN",
+      "name": "LEGAL & GEN"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 51,
+    "fields": {
+      "code": "LLOY",
+      "name": "LLOYDS GRP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 52,
+    "fields": {
+      "code": "LSE",
+      "name": "LON.STK.EXCH"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 53,
+    "fields": {
+      "code": "MKS",
+      "name": "MARKS & SP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 54,
+    "fields": {
+      "code": "MGGT",
+      "name": "MEGGITT"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 55,
+    "fields": {
+      "code": "MRO",
+      "name": "MELROSE IND"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 56,
+    "fields": {
+      "code": "MNDI",
+      "name": "MONDI"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 57,
+    "fields": {
+      "code": "MRW",
+      "name": "MORRISON (WM)"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 58,
+    "fields": {
+      "code": "NG",
+      "name": "NATIONAL GRID"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 59,
+    "fields": {
+      "code": "NXT",
+      "name": "NEXT"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 60,
+    "fields": {
+      "code": "OML",
+      "name": "OLD MUTUAL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 61,
+    "fields": {
+      "code": "PSON",
+      "name": "PEARSON"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 62,
+    "fields": {
+      "code": "PSN",
+      "name": "PERSIMMON"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 63,
+    "fields": {
+      "code": "PFC",
+      "name": "PETROFAC"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 64,
+    "fields": {
+      "code": "PRU",
+      "name": "PRUDENTIAL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 65,
+    "fields": {
+      "code": "RRS",
+      "name": "RANDGOLD RES"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 66,
+    "fields": {
+      "code": "RDSA",
+      "name": "RDS'A'"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 67,
+    "fields": {
+      "code": "RDSB",
+      "name": "RDS'B'"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 68,
+    "fields": {
+      "code": "RB",
+      "name": "RECKITT BEN. GP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 69,
+    "fields": {
+      "code": "REL",
+      "name": "REED ELSEVIER"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 70,
+    "fields": {
+      "code": "RSL",
+      "name": "RESOLUTION"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 71,
+    "fields": {
+      "code": "REX",
+      "name": "REXAM"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 72,
+    "fields": {
+      "code": "RIO",
+      "name": "RIO TINTO"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 73,
+    "fields": {
+      "code": "RR",
+      "name": "ROLLS-ROYCE HLG"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 74,
+    "fields": {
+      "code": "RBS",
+      "name": "ROYAL BANK SCOT"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 75,
+    "fields": {
+      "code": "RSA",
+      "name": "RSA INS"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 76,
+    "fields": {
+      "code": "SAB",
+      "name": "SABILLER"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 77,
+    "fields": {
+      "code": "SGE",
+      "name": "SAGE GRP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 78,
+    "fields": {
+      "code": "SBRY",
+      "name": "SAINSBURY(J)"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 79,
+    "fields": {
+      "code": "SDR",
+      "name": "SCHRODERS"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 80,
+    "fields": {
+      "code": "SVT",
+      "name": "SEVERN TRENT"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 81,
+    "fields": {
+      "code": "SHP",
+      "name": "SHIRE"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 82,
+    "fields": {
+      "code": "SN",
+      "name": "SMITH & NEPHEWW"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 83,
+    "fields": {
+      "code": "SMN",
+      "name": "SMITHS GROUP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 84,
+    "fields": {
+      "code": "SPD",
+      "name": "SPORTSDIRECT"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 85,
+    "fields": {
+      "code": "SSE",
+      "name": "SSE"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 86,
+    "fields": {
+      "code": "STAN",
+      "name": "STAND.CHART"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 87,
+    "fields": {
+      "code": "SL",
+      "name": "STD LIFE"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 88,
+    "fields": {
+      "code": "TATE",
+      "name": "TATE & LYLE"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 89,
+    "fields": {
+      "code": "TSCO",
+      "name": "TESCO"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 90,
+    "fields": {
+      "code": "TPK",
+      "name": "TRAVIS PERKINS"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 91,
+    "fields": {
+      "code": "TT",
+      "name": "TUI TRAVEL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 92,
+    "fields": {
+      "code": "TLW",
+      "name": "TULLOW OIL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 93,
+    "fields": {
+      "code": "ULVR",
+      "name": "UNILEVER"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 94,
+    "fields": {
+      "code": "UU",
+      "name": "UTD. UTILITIES"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 95,
+    "fields": {
+      "code": "VED",
+      "name": "VEDANTA"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 96,
+    "fields": {
+      "code": "VOD",
+      "name": "VODAFONE GRP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 97,
+    "fields": {
+      "code": "WEIR",
+      "name": "WEIR GRP"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 98,
+    "fields": {
+      "code": "WTB",
+      "name": "WHITBREAD"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 99,
+    "fields": {
+      "code": "WMH",
+      "name": "WILLIAM HILL"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 100,
+    "fields": {
+      "code": "WOS",
+      "name": "WOLSELEY"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 101,
+    "fields": {
+      "code": "WPP",
+      "name": "WPP"
+    }
   }
 ]

@@ -8,12 +8,16 @@ from django.contrib.auth import logout as auth_logout, authenticate, login as au
 from django.contrib.auth.views import login as loginview
 from django.core.exceptions import ObjectDoesNotExist
 
-from stocks.models import Stock
+from stocks.models import Stock, UserProfile
 
 def index(request):
-	stocks_codes = Stock.objects.filter()
-	#print stocks_codes
-	return render(request, 'stocks/base.html', {'stocks_codes': stocks_codes})
+	profile = UserProfile.objects.get(user=request.user)
+	stocks_codes = profile.interests.all()
+	all_stocks = list()
+	for stock in Stock.objects.all():
+		if stock not in stocks_codes:
+			all_stocks.append(stock)
+	return render(request, 'stocks/base.html', {'stocks': stocks_codes, 'stocks_codes': all_stocks})
 	
 def quotes(request):
 	return render(request, 'stockview/quotes.html')
@@ -81,11 +85,11 @@ def getStocks(request):
 @login_required
 def addStock(request):
 	if (request.method == 'POST'):
-		stockID = request.POST['code'].upper()
-		stockName = request.POST['name'].upper()
-		matchingStock, added = Stock.objects.get_or_create(code=stockID, name=stockName)
-		matchingStock.save()
-	return render(request, 'stocks/base.html', {'fromAdd': True, 'added': added, 'stockID': stockID})
+		stockID = request.POST['stock'].upper()
+		matchingStock = Stock.objects.get(code=stockID)
+		profile, created = UserProfile.objects.get_or_create(user=request.user)
+		profile.interests.add(matchingStock)
+	return redirect("/")
 
 @login_required
 def removeStock(request):
