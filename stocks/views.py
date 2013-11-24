@@ -12,7 +12,7 @@ from stocks.models import Stock
 
 def index(request):
 	stocks_codes = Stock.objects.filter()
-	print stocks_codes
+	#print stocks_codes
 	return render(request, 'stocks/base.html', {'stocks_codes': stocks_codes})
 	
 def quotes(request):

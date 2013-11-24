@@ -3,6 +3,7 @@
 <script type="text/javascript">
     
     var stockFunction = null;
+	
     
     (
         function($) {
@@ -73,10 +74,16 @@
 	
 	Stock Label: <input type="text" id="stock" placeholder="prefix indexes with '^'"/>
 	
-	Start Date: <input type="date" id="start" />
+	Start Date: <input type="date" id="start"/>
 	
 	End Date: <input type="date" id="end" />
+	
+	<script type="text/javascript">
+		document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+		document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+	</script>
 	
 	<input type="button" id="getstockbutton" onclick="updateStock()" value="Get Stocks" />
 	
 	<div id="output" ><pre>	Date		Open	High	Low	Close	Volume</pre></div>
+
