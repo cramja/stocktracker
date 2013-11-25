@@ -17,9 +17,9 @@
 
     {% if user.is_authenticated %}
             {% include 'stockview/recommendation.html' %}
+    {% else %}
+        {% include 'stockview/quotes.html' %}
     {% endif %}
-
-    {% include 'stockview/quotes.html' %}
 
     {% include 'stockview/graph.html' %}
 </body>

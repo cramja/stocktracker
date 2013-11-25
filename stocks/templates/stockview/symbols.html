@@ -1,16 +1,113 @@
 <h3 style="text-align:center">{{ user.username }}'s portfolio</h3>
+
+<script type="text/javascript">
+    var stockFunction = null;
+
+    (function($) {
+
+    function printStock(name, data) {
+            document.getElementById(name + "_date").innerHTML = ""
+            document.getElementById(name + "_open").innerHTML = ""
+            document.getElementById(name + "_high").innerHTML = ""
+            document.getElementById(name + "_low").innerHTML = ""
+            document.getElementById(name + "_close").innerHTML = ""
+            document.getElementById(name + "_volume").innerHTML = ""
+
+        if (data.query.results == null) {
+            document.getElementById(name + "_date").innerHTML = "No data"
+        } else  if (data.query.results.quote.High) {
+            document.getElementById(name + "_date").innerHTML += data.query.results.quote.date + "<br/>"
+            document.getElementById(name + "_open").innerHTML += data.query.results.quote.Open + "<br/>"
+            document.getElementById(name + "_high").innerHTML += data.query.results.quote.High + "<br/>"
+            document.getElementById(name + "_low").innerHTML += data.query.results.quote.Low + "<br/>"
+            document.getElementById(name + "_close").innerHTML += data.query.results.quote.Close + "<br/>"
+            document.getElementById(name + "_volume").innerHTML += data.query.results.quote.Volume + "<br/>"
+        } else if (data.query.results.quote[0].High) {
+            for (var i = 0; i < data.query.count; i++) {
+                document.getElementById(name + "_date").innerHTML += data.query.results.quote[i].date + "<br/>"
+                document.getElementById(name + "_open").innerHTML += data.query.results.quote[i].Open + "<br/>"
+                document.getElementById(name + "_high").innerHTML += data.query.results.quote[i].High + "<br/>"
+                document.getElementById(name + "_low").innerHTML += data.query.results.quote[i].Low + "<br/>"
+                document.getElementById(name + "_close").innerHTML += data.query.results.quote[i].Close + "<br/>"
+                document.getElementById(name + "_volume").innerHTML += data.query.results.quote[i].Volume + "<br/>"
+            }
+        }
+        document.getElementById("getstockbutton").value = "Get Stocks";
+
+    }
+
+    function getStock(stockCode, stockName) {
+console.log("code: " + stockCode + ", name: " + stockName)
+        var args = {
+            stock: stockCode,
+            startDate: document.getElementById("start").value,
+            endDate: document.getElementById("end").value,
+        };
+        if (args.stock.indexOf("^") == -1)
+            args.stock +=".L";
+
+        document.getElementById("getstockbutton").value = "Loading";
+
+        var base = 'http://query.yahooapis.com/v1/public/yql?q=';
+        var query = 'select * from yahoo.finance.historicaldata where symbol = "{stock}" and startDate = "{startDate}" and endDate = "{endDate}"';
+        var suffix = '&env=store://datatables.org/alltableswithkeys&format=json&callback=?';
+
+        args = args || {};
+
+        if (!args.stock) {
+            alert('No stock defined');
+            return;
+        }
+
+        query = query
+        .replace('{stock}', args.stock)
+        .replace('{startDate}', args.startDate)
+        .replace('{endDate}', args.endDate)
+
+        var url = base + query + suffix;
+        console.log(url);
+        $.getJSON(url, function(data){printStock(stockName, data);} );
+
+    }
+
+    stockFunction = getStock;
+
+
+})(jQuery);
+
+    function updateStock(args) {
+    {% for stock in user_stocks %}
+        stockFunction("{{stock.code}}", "{{stock.name}}");
+    {% endfor %}
+
+    }
+</script>
+
 {% if user_stocks != None %}
-    <table>
+    Show stocks from <input type="date" class="form-control input-sm" id="start" /> to <input type="date" class="form-control input-sm" id="end" />
+<script type="text/javascript">
+    document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
+    document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+</script>
+    <input type="button" class="btn btn-default btn-primary" id="getstockbutton" onclick="updateStock()" value="Get Stocks" />
+
+    <table cellpadding="7">
         <thead>
             <tr>
                 <th>Code</th>
                 <th>Name</th>
                 <th>Select</th>
+                <th>Date</th>
+                <th>Open</th>
+                <th>High</th>
+                <th>Low</th>
+                <th>Close</th>
+                <th>Volume</th>
             </tr>
         </thead>
         <form id="removeStocks" action="/remove_stock" method="post">{% csrf_token %}
             {% for stock in user_stocks %}
-                <tr>
+                <tr style="border-top:1px solid black">
                     <td>{{stock.code}}</td>
                     <td>{{stock.name}}</td>
                     <td>
@@ -18,6 +115,12 @@
                             <input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/>
                         </label>
                     </td>
+                    <td id="{{stock.name}}_date"></td>
+                    <td id="{{stock.name}}_open"></td>
+                    <td id="{{stock.name}}_high"></td>
+                    <td id="{{stock.name}}_low"></td>
+                    <td id="{{stock.name}}_close"></td>
+                    <td id="{{stock.name}}_volume"></td>
                 <tr>
             {% endfor %}
         </form>
@@ -32,34 +135,13 @@
 <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
     <select class="form-control" name="stock">
         {% for s in other_stocks %}
-            <option value="{{s.code}}">{{s.code}}</option>
+            <option value="{{s.code}}">{{s.name}} ({{s.code}})</option>
         {% endfor %}
     </select>
     <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
-    <!--<input type="submit" value="Add">-->
 </form>
 <script src="/static/js/flatui-checkbox.js"></script>
 
- <script>
-//  function getStocks() {
-//         alert("wtf");
-//         $.getJSON('/getStocks/', renderStocks);
-//     }
-    
-//  function renderStocks(data) {
-//      document.write("here");
-//      htmltoinsert = '<form name="addStock" action="/add_stock" method="post">'
-//      htmltoinsert += '<input type="submit" value="Submit"/>'
-//      htmltoinsert += '<select name ="stock">'
-//      $.each(data,function(k,v){
-//          htmltoinsert += '<option value='+v.code+'name='+v.code+'>'+v.code+' 'v.name+'</option>'
-//         }
-//      htmltoinsert += '</select>'
-//      htmltoinsert += '<input type="submit" value="Submit">'
-//      htmltoinsert += '</form>'
-//      $('#add').prepend(htmltoinsert);
-//      };
-// </script>
 <script>
     function submitRemoveStocks() {
         document.getElementById("removeStocks").submit();
@@ -70,17 +152,15 @@
         additional_stocks1 = "";
         for (var i = 1; i < checkedStocks.length; i++) {
             var temp = checkedStocks[i].value;
-			if (temp.indexOf("^") == -1){
-					temp += exchange.value;
-			}
-			additional_stocks1 += temp;
-			
+            additional_stocks1 += temp;
+            
             if (i != checkedStocks.length-1)
                 additional_stocks1 += ',';
         }
         stock_label.value = stock_label1;
-		stock.value = stock_label1;
-		updateStock();
+        updateStock();
         additional_stocks.value = additional_stocks1;
     }
+
+    updateStock();
 </script>
