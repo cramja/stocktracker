@@ -79,51 +79,51 @@
     }
 </script>
 
+{% if user_stocks != None %}
 <div class="footer-container">
     <a href="#" class="toggle">PORTFOLIO</a>
     <div class="footer">
-        {% if user_stocks != None %}
-            <input type="date" class="form-control input-sm" id="start" /> to <input type="date" class="form-control input-sm" id="end" />
-            <script type="text/javascript">
-                document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
-                document.getElementById('end').value = new Date().toISOString().substring(0, 10);
-            </script>
+        <input type="date" class="form-control input-sm" id="start" /> to <input type="date" class="form-control input-sm" id="end" />
+        <script type="text/javascript">
+            document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
+            document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+        </script>
+        <input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value="Retrieve Data" />
 
-            <input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value="Retrieve Data" />
-            <table cellpadding="7">
-                <thead>
+        <table cellpadding="7">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Select</th>
+                    <th>Date</th>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                    <th>Volume</th>
+                </tr>
+            </thead>
+            <form id="removeStocks" action="/remove_stock" method="post">{% csrf_token %}
+                {% for stock in user_stocks %}
+                    <tr style="border-top:1px solid black">
+                        <td>{{stock.code}}</td>
+                        <td>{{stock.name}}</td>
+                        <td>
+                            <label class="checkbox" for="checkbox1">
+                                <input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/>
+                            </label>
+                        </td>
+                        <td id="{{stock.name}}_date"></td>
+                        <td id="{{stock.name}}_open"></td>
+                        <td id="{{stock.name}}_high"></td>
+                        <td id="{{stock.name}}_low"></td>
+                        <td id="{{stock.name}}_close"></td>
+                        <td id="{{stock.name}}_volume"></td>
                     <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Select</th>
-                        <th>Date</th>
-                        <th>Open</th>
-                        <th>High</th>
-                        <th>Low</th>
-                        <th>Close</th>
-                        <th>Volume</th>
-                    </tr>
-                </thead>
-                <form id="removeStocks" action="/remove_stock" method="post">{% csrf_token %}
-                    {% for stock in user_stocks %}
-                        <tr style="border-top:1px solid black">
-                            <td>{{stock.code}}</td>
-                            <td>{{stock.name}}</td>
-                            <td>
-                                <label class="checkbox" for="checkbox1">
-                                    <input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/>
-                                </label>
-                            </td>
-                            <td id="{{stock.name}}_date"></td>
-                            <td id="{{stock.name}}_open"></td>
-                            <td id="{{stock.name}}_high"></td>
-                            <td id="{{stock.name}}_low"></td>
-                            <td id="{{stock.name}}_close"></td>
-                            <td id="{{stock.name}}_volume"></td>
-                        <tr>
-                    {% endfor %}
-                </form>
-            </table>
+                {% endfor %}
+            </form>
+        </table>
             <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
             <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
             
