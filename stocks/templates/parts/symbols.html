@@ -148,14 +148,14 @@
 <script>
     function submitRemoveStocks() {
         document.getElementById("removeStocks").submit();
+        document.getElementById("")
     }
     function visualizeStocks() {
         checkedStocks = $("input:checkbox[name=stock]:checked");
         stock_label1 = checkedStocks[0].value;
         additional_stocks1 = "";
-        for (var i = 1; i < checkedStocks.length; i++) {
-            var temp = checkedStocks[i].value;
-            additional_stocks1 += temp;
+        for (i = 1; i < checkedStocks.length; i++) {
+            additional_stocks1 += checkedStocks[i].value + '.L';
             
             if (i != checkedStocks.length-1)
                 additional_stocks1 += ',';
