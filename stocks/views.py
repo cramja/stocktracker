@@ -17,9 +17,9 @@ def index(request):
         recommendedStocks = otherStocks.filter(recommended=True)
         if (len(recommendedStocks) == 0):
             recommendedStocks = None
-        return render(request, 'base.html', {'user_stocks': userStocks, 'other_stocks': otherStocks, 'recommended': recommendedStocks})
+        return render(request, 'profile.html', {'user_stocks': userStocks, 'other_stocks': otherStocks, 'recommended': recommendedStocks})
     else:
-        return render(request, 'base.html', {'stocks_codes': Stock.objects.all(), 'recommended': None})
+        return render(request, 'profile.html', {'stocks_codes': Stock.objects.all(), 'recommended': None})
 
 def login(request):
     if not request.user.is_authenticated() and request.method == "POST":
@@ -35,7 +35,7 @@ def logout(request):
 def register(request):
     if request.user.is_authenticated():
         return redirect("/")
-    return render(request, 'users/register.html')
+    return render(request, 'register.html')
 
 def create(request):
     if request.method == "POST":

@@ -2,25 +2,11 @@
 <html lang="en">
 <head>
     <meta charset=utf-8>
-    <title>Stock Tracker</title>
+    <title>{% block title %}Stock Tracker{% endblock %}</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <link href="/static/css/flat-ui.css" rel="stylesheet">
 </head>
 <body>
-    <div style="float:right">
-        {% include 'users/login.html' %}
-    </div>
-
-    {% if user.is_authenticated %}
-        {% include 'stockview/symbols.html' %}
-    {% endif %}
-
-    {% if recommended != None %}
-        {% include 'stockview/recommendation.html' %}
-    {% else %}
-        {% include 'stockview/quotes.html' %}
-    {% endif %}
-
-    {% include 'stockview/graph.html' %}
+    {% block content %}{% endblock %}
 </body>
 </html>
