@@ -12,6 +12,8 @@ def index(request):
         userStocks = profile.interests.all()
         # any stock that is not in userStocks
         otherStocks = Stock.objects.exclude(pk__in=userStocks.values_list('pk', flat=True))
+        if (len(userStocks) == 0):
+            userStocks = None
         return render(request, 'base.html', {'user_stocks': userStocks, 'other_stocks': otherStocks})
     else:
         return render(request, 'base.html', {'stocks_codes': Stock.objects.all()})

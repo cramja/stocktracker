@@ -6,7 +6,7 @@
 </head>
 <body>
     <h3 style="text-align:center">{{ user.username }}'s portfolio</h3>
-
+{% if user_stocks != None %}
     <table>
         <thead>
             <tr>
@@ -24,12 +24,13 @@
                 <tr>
             {% endfor %}
         </form>
-    </table> 
+    </table>
     <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
     <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
     
     <br/>
     <br/>
+{% endif %}
 
     <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
         <select class="form-control" name="stock">
