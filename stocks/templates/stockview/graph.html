@@ -1,8 +1,9 @@
-
 <script>
     setInterval(
         function() {
-            var stock_label = document.getElementById("stock_label").value + exchange.value;
+            var stock_label = document.getElementById("stock_label").value;
+            if (stock_label.indexOf("^") == -1)
+                stock_label += exchange.value;
             var time = document.getElementById("time").value;
             var chart = document.getElementById("charttype").value;
             var additional_stocks = document.getElementById("additional_stocks").value;
