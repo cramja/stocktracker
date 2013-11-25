@@ -24,7 +24,7 @@ header {
 }
 
 .wrapper {
-	width: 75%;
+	width: 100%;
 	background-color: #eeeeee;
 	margin: 0 auto;
 	padding: 80px;
@@ -35,7 +35,6 @@ header {
 	text-align: center;
 	margin: 0 auto;
 	padding: 80px;
-	background-color: #eeeeee;
 	color: #515151;
 	padding: 40px;
 }

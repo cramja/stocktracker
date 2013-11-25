@@ -90,40 +90,42 @@
         </script>
         <input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value="Retrieve Data" />
 
-        <table cellpadding="7">
-            <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th>Select</th>
-                    <th>Date</th>
-                    <th>Open</th>
-                    <th>High</th>
-                    <th>Low</th>
-                    <th>Close</th>
-                    <th>Volume</th>
-                </tr>
-            </thead>
-            <form id="removeStocks" action="/remove_stock" method="post">{% csrf_token %}
-                {% for stock in user_stocks %}
-                    <tr style="border-top:1px solid black">
-                        <td>{{stock.code}}</td>
-                        <td>{{stock.name}}</td>
-                        <td>
-                            <label class="checkbox" for="checkbox1">
-                                <input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/>
-                            </label>
-                        </td>
-                        <td id="{{stock.name}}_date"></td>
-                        <td id="{{stock.name}}_open"></td>
-                        <td id="{{stock.name}}_high"></td>
-                        <td id="{{stock.name}}_low"></td>
-                        <td id="{{stock.name}}_close"></td>
-                        <td id="{{stock.name}}_volume"></td>
+        <div class="table-responsive">
+            <table class="table" cellpadding="7">
+                <thead>
                     <tr>
-                {% endfor %}
-            </form>
-        </table>
+                        <th>Code</th>
+                        <th>Company</th>
+                        <th>Select</th>
+                        <th>Date</th>
+                        <th class="numeric">Open</th>
+                        <th class="numeric">High</th>
+                        <th class="numeric">Low</th>
+                        <th class="numeric">Close</th>
+                        <th class="numeric">Volume</th>
+                    </tr>
+                </thead>
+                <form id="removeStocks" action="/remove_stock" method="post">{% csrf_token %}
+                    {% for stock in user_stocks %}
+                        <tr style="border-top:1px solid black">
+                            <td>{{stock.code}}</td>
+                            <td>{{stock.name}}</td>
+                            <td>
+                                <label class="checkbox" for="checkbox1">
+                                    <input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/>
+                                </label>
+                            </td>
+                            <td id="{{stock.name}}_date"></td>
+                            <td  class="numeric" id="{{stock.name}}_open"></td>
+                            <td  class="numeric" id="{{stock.name}}_high"></td>
+                            <td  class="numeric" id="{{stock.name}}_low"></td>
+                            <td  class="numeric" id="{{stock.name}}_close"></td>
+                            <td  class="numeric" id="{{stock.name}}_volume"></td>
+                        <tr>
+                    {% endfor %}
+                </form>
+            </table>
+        </div>
             <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
             <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
             
