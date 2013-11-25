@@ -16,6 +16,23 @@
         document.getElementById('start').value = new Date(new Date() - (7 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
         document.getElementById('end').value = new Date().toISOString().substring(0, 10);
     </script>
+	<select id="exchange" class="form-control input-sm">
+		<option value=""></option>
+		<option value=".L">London</option>
+		<option value=".TW">Taiwan</option>
+		<option value=".SW">Swedish</option>
+		<option value=".ST">Swiss</option>
+		<option value=".MT">Madrid</option>
+		<option value=".KS">Korean</option>
+		<option value=".SI">Singapore</option>
+		<option value=".OL">Oslo</option>
+		<option value=".NZ">New Zealand</option>
+		<option value=".MI">Milan</option>
+		<option value=".HK">Hong Kong</option>
+		<option value=".PA">Paris</option>
+		<option value=".BE">Berlin</option>
+		<option value="">NASDAQ</option>
+	</select>
 
     <button class="btn btn-default btn-primary" id="getstockbutton" onclick="updateStock()">Get Stocks</button>
 
@@ -29,6 +46,7 @@
         function($) {
             function printStock(data) {
                 try {
+					document.getElementById("output").innerHTML = "";
                     console.log(data);
                     if (data.query.results.quote[0].High) {
                         for (var i = 0; i < data.query.count; i++) {
@@ -55,7 +73,7 @@
                     }
                 }
                 catch (err) {
-                    alert("Unable to fetch stocks, try increasing your date range");
+                    alert("Unable to fetch stocks, try increasing your date range or checking your stock label and stock exchange is correct.");
                 }
 
                 document.getElementById("getstockbutton").value = "Get Stocks";
@@ -63,7 +81,7 @@
 
             function getStock() {
                 var args = {
-                    stock: document.getElementById("stock").value,
+                    stock: document.getElementById("stock").value + exchange.value,
                     startDate: document.getElementById("start").value,
                     endDate: document.getElementById("end").value,
                 };
