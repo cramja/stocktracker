@@ -82,10 +82,12 @@
 
             function getStock() {
                 var args = {
-                    stock: document.getElementById("stock").value + exchange.value,
+                    stock: document.getElementById("stock").value,
                     startDate: document.getElementById("start").value,
                     endDate: document.getElementById("end").value,
                 };
+				if (args.stock.indexOf("^") == -1)
+					args.stock += exchange.value;
                 document.getElementById("getstockbutton").value = "Loading";
                 var base = 'http://query.yahooapis.com/v1/public/yql?q=';
                 var query = 'select * from yahoo.finance.historicaldata where symbol = "{stock}" and startDate = "{startDate}" and endDate = "{endDate}"';
