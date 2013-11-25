@@ -43,21 +43,42 @@
     <script src="/static/js/flatui-checkbox.js"></script>
 </body>
 
+ <script>
+//  function getStocks() {
+//         alert("wtf");
+//         $.getJSON('/getStocks/', renderStocks);
+//     }
+    
+//  function renderStocks(data) {
+//      document.write("here");
+//      htmltoinsert = '<form name="addStock" action="/add_stock" method="post">'
+//      htmltoinsert += '<input type="submit" value="Submit"/>'
+//      htmltoinsert += '<select name ="stock">'
+//      $.each(data,function(k,v){
+//          htmltoinsert += '<option value='+v.code+'name='+v.code+'>'+v.code+' 'v.name+'</option>'
+//         }
+//      htmltoinsert += '</select>'
+//      htmltoinsert += '<input type="submit" value="Submit">'
+//      htmltoinsert += '</form>'
+//      $('#add').prepend(htmltoinsert);
+//      };
+// </script>
 <script>
     function submitRemoveStocks() {
         document.getElementById("removeStocks").submit();
     }
     function visualizeStocks() {
         checkedStocks = $("input:checkbox[name=stock]:checked");
-        stock_label = checkedStocks[0].value;
-        additional_stocks = "";
-        for (int i = 1; i < checkedStocks.length; i++) {
-            additional_stocks += checkedStocks[i].value
-            if (i != checkedStocks.length-1
-                additional_stocks += ', '
+        stock_label1 = checkedStocks[0].value;
+        additional_stocks1 = "";
+        for (var i = 1; i < checkedStocks.length; i++) {
+            additional_stocks1 += checkedStocks[i].value + '.L';
+            if (i != checkedStocks.length-1)
+                additional_stocks1 += ',';
         }
-        $('#stock_label').text(stock_label);
-        $('#additional_stocks').text(additional_stocks);
+        stock_label.value = stock_label1 + '.L';
+        additional_stocks.value = additional_stocks1;
     }
 </script>
 </html>
+

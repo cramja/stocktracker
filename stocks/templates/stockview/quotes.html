@@ -13,7 +13,7 @@
     <input type="date" class="form-control input-sm" id="start"/> to
     <input type="date" class="form-control input-sm" id="end"/>
     <script type="text/javascript">
-        document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+        document.getElementById('start').value = new Date(new Date() - (7 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
         document.getElementById('end').value = new Date().toISOString().substring(0, 10);
     </script>
 
@@ -63,7 +63,7 @@
 
             function getStock() {
                 var args = {
-                    stock: document.getElementById("stock").value + '.L',
+                    stock: document.getElementById("stock").value,
                     startDate: document.getElementById("start").value,
                     endDate: document.getElementById("end").value,
                 };
