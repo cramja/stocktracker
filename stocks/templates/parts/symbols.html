@@ -37,7 +37,6 @@
     }
 
     function getStock(stockCode, stockName) {
-console.log("code: " + stockCode + ", name: " + stockName)
         var args = {
             stock: stockCode,
             startDate: document.getElementById("start").value,
@@ -65,7 +64,6 @@ console.log("code: " + stockCode + ", name: " + stockName)
         .replace('{endDate}', args.endDate)
 
         var url = base + query + suffix;
-        console.log(url);
         $.getJSON(url, function(data){printStock(stockName, data);} );
 
     }
@@ -158,8 +156,8 @@ console.log("code: " + stockCode + ", name: " + stockName)
                 additional_stocks1 += ',';
         }
         stock_label.value = stock_label1;
-        updateStock();
         additional_stocks.value = additional_stocks1;
+        updateChart();
     }
 
     updateStock();
