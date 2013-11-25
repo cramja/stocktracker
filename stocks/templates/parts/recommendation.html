@@ -1,7 +1,13 @@
-<h4>Recommended Shares</h4>
+</br>
+<div class="footer-container">
+    <a href="#" class="toggle">RECOMMENDATIONS</a>
+    <div class="footer">
+    	<form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
+    		{% for s in recommended %}
+        		<button class="btn btn-default btn-primary" name="stock" value="{{s.code}}" type="submit">{{s.name}} ({{s.code}})</button>
+    		{% endfor %}
+		</form>
+    </div>
+</div>
 
-<form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
-    {% for s in recommended %}
-        <button class="btn btn-default btn-primary" name="stock" value="{{s.code}}" type="submit">{{s.name}} ({{s.code}})</button>
-    {% endfor %}
-</form>
+
