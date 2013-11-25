@@ -13,7 +13,11 @@
                 <tr>
                     <td>{{stock.code}}</td>
                     <td>{{stock.name}}</td>
-                    <td><input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/></td>
+                    <td>
+                        <label class="checkbox" for="checkbox1">
+                            <input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/>
+                        </label>
+                    </td>
                 <tr>
             {% endfor %}
         </form>
