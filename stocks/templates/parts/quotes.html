@@ -3,10 +3,10 @@
     <a href="#" class="toggle">QUOTES</a>
     <div class="footer">
         <!-- Stock ID -->
-        <input type="text" id="stock" class="form-control input-sm" placeholder="Stock ID e.g. GOOG" />
+        <input type="text" id="stock" class="form-control input-sm" placeholder="Stock ID e.g. TSCO" />
         <!-- Date Range -->
-        <input type="date" class="form-control input-sm" id="start"/> to
-        <input type="date" class="form-control input-sm" id="end"/>
+        <input type="date" class="form-control input-sm" id="start" value="2013-01-20"/> to
+        <input type="date" class="form-control input-sm" id="end" value="2013-11-26"/>
         <script type="text/javascript">
             document.getElementById('start').value = new Date(new Date() - (7 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
             document.getElementById('end').value = new Date().toISOString().substring(0, 10);
@@ -28,10 +28,11 @@
             <option value="">NASDAQ</option>
         </select>
 
-        <button class="btn btn-default btn-primary" id="getstockbutton" onclick="updateStock()">Get Stocks</button>
+        <button class="btn btn-default btn-primary" id="getstockbutton" onclick="updateStock()">Retrieve Stocks</button>
 
         <div><pre> Date        Open     High    Low Close   Volume</pre></div>
         <div id="output1" style="#ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;"><div id="output"></div></div>
+
     </div>
 </div>
 <script type="text/javascript" src="/static/js/jquery-2.0.3.min.js"></script>
@@ -45,6 +46,9 @@ var stockFunction = null;
             if (data.query.results == null) {
                 alert("Unable to fetch stocks, try increasing your date range or checking your stock label and stock exchange is correct.");
             } else if (data.query.results.quote.High) {
+                document.getElementById("tblName").innerHTML = "fhsdjfh";
+
+
                 document.getElementById("output").innerHTML += "<pre>" +
                 data.query.results.quote.date +
                 "   " + data.query.results.quote.Open +

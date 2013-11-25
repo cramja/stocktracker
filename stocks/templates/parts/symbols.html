@@ -30,7 +30,7 @@
                 document.getElementById(name + "_volume").innerHTML += data.query.results.quote[i].Volume + "<br/>"
             }
         }
-        document.getElementById("getstockbutton").value = "Get Stocks";
+        document.getElementById("getstockbutton").value = "Retrieve Data";
 
     }
 
@@ -83,12 +83,15 @@
 <div class="footer-container">
     <a href="#" class="toggle">PORTFOLIO</a>
     <div class="footer">
-        <input type="date" class="form-control input-sm" id="start" /> to <input type="date" class="form-control input-sm" id="end" />
-        <script type="text/javascript">
-            document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
-            document.getElementById('end').value = new Date().toISOString().substring(0, 10);
-        </script>
-        <input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value="Retrieve Data" />
+
+        <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
+            <select class="form-control" name="stock">
+                {% for s in other_stocks %}
+                    <option value="{{s.code}}">{{s.name}} ({{s.code}})</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
+        </form>
 
         <div class="table-responsive">
             <table class="table" cellpadding="7">
@@ -126,21 +129,20 @@
                 </form>
             </table>
         </div>
+
+        <input type="date" class="form-control input-sm" id="start" /> to <input type="date" class="form-control input-sm" id="end" />
+        <script type="text/javascript">
+            document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
+            document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+        </script>
+        <input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value=""/>
+
             <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
             <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
             
             <br/>
             <br/>
         {% endif %}
-
-        <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
-            <select class="form-control" name="stock">
-                {% for s in other_stocks %}
-                    <option value="{{s.code}}">{{s.name}} ({{s.code}})</option>
-                {% endfor %}
-            </select>
-            <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
-        </form>
     </div>
 </div>
 
