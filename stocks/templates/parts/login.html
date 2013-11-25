@@ -1,17 +1,23 @@
 {% if user.is_authenticated %}
-    <div>
-        <button class="btn btn-default btn-default" onclick="logout()">Logout</button>
+    <div class="footer-container">
+        <a href="#" class="toggle"  onclick="logout()">LOGOUT</a>
+        <div class="footer_link"></div>
     </div>
 
 {% else %}
-    <form role="form" action="/login" method="post"> {% csrf_token %}
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" name="username" required autofocus value="{{ username }}" />
-            <input type="password" class="form-control" placeholder="Password" name="password" required />
-            <button type="submit" class="btn btn-default btn-default">Login</button>
-            <button class="btn btn-default btn-default" onclick="register();return false;">Register</button>
-        </div>
-    </form>
+<div class="footer-container">
+    <a href="#" class="toggle">LOGIN</a>
+    <div class="footer">
+        <form role="form" action="/login" method="post"> {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control input-sm" placeholder="Username" name="username" required autofocus value="{{ username }}" />
+                <input type="password" class="form-control input-sm" placeholder="Password" name="password" required />
+                <button type="submit" class="btn btn-default btn-success">Login</button>
+                <button class="btn btn-default btn-info" onclick="register();return false;">Register</button>
+            </div>
+        </form>
+    </div>
+</div>    
 
 {% endif %}
 

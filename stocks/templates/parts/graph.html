@@ -1,28 +1,52 @@
+<<<<<<< HEAD
 <h4>Stock Comparison</h4>
+=======
+<script>
+    setInterval(
+        function() {
+            var stock_label = document.getElementById("stock_label").value;
+            if (stock_label.indexOf("^") == -1)
+                stock_label += ".L";
+            var time = document.getElementById("time").value;
+            var chart = document.getElementById("charttype").value;
+            var additional_stocks = document.getElementById("additional_stocks").value;
+            additional_stocks = additional_stocks.replace(/\s+/g, '');
+            document.getElementById("chart").src="http://chart.finance.yahoo.com/z?s=" + stock_label + "&t=" + time + "&q=" + chart + "&l=on" + "&z=l" + "&c=" + additional_stocks + "&region=GB" + "&lang=en-GB";
+            }, 5000);
+</script>
 
-<input type="text" class="form-control input-sm" id="stock_label" placeholder="Stock ID" size="10"/>
-<input type="text" data-toggle="tooltip" title="Separate ID's by comma" class="form-control input-sm btn-wide" id="additional_stocks" placeholder="Additional Stocks" size="10"/>
+</br>
+>>>>>>> UI Improvements
 
-<select class="form-control" id="time">
-    <optgroup label="Range">
-    <option value="1d">1 Day</option>
-    <option value="5d">5 Days</option>
-    <option value="3m">3 Months</option>
-    <option value="6m">6 Months</option>
-    <option value="1y">1 Year</option>
-    <option value="2y">2 Years</option>
-    <option value="5y">5 Years</option>
-    <option value="my">Maximum</option>
-</select>
+<div class="footer-container">
+    <a href="#" class="toggle">VISUALISE</a>
+    <div class="footer">
 
-<select class="form-control" id="charttype">
-    <optgroup label="Chart Type">
-    <option value="l">Line Graph</option>
-    <option value="b">Bar Graph</option>
-    <option value="c">Candle Graph</option>
-</select>
+        <input type="text" class="form-control input-sm" id="stock_label" placeholder="Stock ID" size="10"/>
+        <input type="text" data-toggle="tooltip" title="Separate ID's by comma" class="form-control input-sm btn-wide" id="additional_stocks" placeholder="Additional Stocks" size="10"/>
 
-<p style="text-align:center"><img src="" id="chart" ></p>
+        <select class="form-control" id="time">
+            <optgroup label="Range">
+            <option value="1d">1 Day</option>
+            <option value="5d">5 Days</option>
+            <option value="3m">3 Months</option>
+            <option value="6m">6 Months</option>
+            <option value="1y">1 Year</option>
+            <option value="2y">2 Years</option>
+            <option value="5y">5 Years</option>
+            <option value="my">Maximum</option>
+        </select>
+
+        <select class="form-control" id="charttype">
+            <optgroup label="Chart Type">
+            <option value="l">Line Graph</option>
+            <option value="b">Bar Graph</option>
+            <option value="c">Candle Graph</option>
+        </select>
+
+        <p style="text-align:center"><img src="" id="chart" ></p>
+    </div>
+</div>
 
 <script type="text/javascript">
     function updateChart() {

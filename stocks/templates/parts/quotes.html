@@ -1,35 +1,39 @@
 <br>
-<h4>Stock Quotes</h4>
-<!-- Stock ID -->
-<input type="text" id="stock" class="form-control input-sm" placeholder="Stock ID e.g. GOOG" />
-<!-- Date Range -->
-<input type="date" class="form-control input-sm" id="start"/> to
-<input type="date" class="form-control input-sm" id="end"/>
-<script type="text/javascript">
-    document.getElementById('start').value = new Date(new Date() - (7 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
-    document.getElementById('end').value = new Date().toISOString().substring(0, 10);
-</script>
-<select id="exchange" class="form-control">
-    <option value=".L">London</option>
-    <option value=".TW">Taiwan</option>
-    <option value=".SW">Swedish</option>
-    <option value=".ST">Swiss</option>
-    <option value=".MT">Madrid</option>
-    <option value=".KS">Korean</option>
-    <option value=".SI">Singapore</option>
-    <option value=".OL">Oslo</option>
-    <option value=".NZ">New Zealand</option>
-    <option value=".MI">Milan</option>
-    <option value=".HK">Hong Kong</option>
-    <option value=".PA">Paris</option>
-    <option value=".BE">Berlin</option>
-    <option value="">NASDAQ</option>
-</select>
+<div class="footer-container">
+    <a href="#" class="toggle">QUOTES</a>
+    <div class="footer">
+        <!-- Stock ID -->
+        <input type="text" id="stock" class="form-control input-sm" placeholder="Stock ID e.g. GOOG" />
+        <!-- Date Range -->
+        <input type="date" class="form-control input-sm" id="start"/> to
+        <input type="date" class="form-control input-sm" id="end"/>
+        <script type="text/javascript">
+            document.getElementById('start').value = new Date(new Date() - (7 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
+            document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+        </script>
+        <select id="exchange" class="form-control">
+            <option value=".L">London</option>
+            <option value=".TW">Taiwan</option>
+            <option value=".SW">Swedish</option>
+            <option value=".ST">Swiss</option>
+            <option value=".MT">Madrid</option>
+            <option value=".KS">Korean</option>
+            <option value=".SI">Singapore</option>
+            <option value=".OL">Oslo</option>
+            <option value=".NZ">New Zealand</option>
+            <option value=".MI">Milan</option>
+            <option value=".HK">Hong Kong</option>
+            <option value=".PA">Paris</option>
+            <option value=".BE">Berlin</option>
+            <option value="">NASDAQ</option>
+        </select>
 
-<button class="btn btn-default btn-primary" id="getstockbutton" onclick="updateStock()">Get Stocks</button>
+        <button class="btn btn-default btn-success" id="getstockbutton" onclick="updateStock()">Get Stocks</button>
 
-<div><pre> Date        Open     High    Low Close   Volume</pre></div>
-<div id="output1" style="#ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;"><div id="output"></div></div>
+        <div><pre> Date        Open     High    Low Close   Volume</pre></div>
+        <div id="output1" style="#ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;"><div id="output"></div></div>
+    </div>
+</div>
 <script type="text/javascript" src="/static/js/jquery-2.0.3.min.js"></script>
 
 <script type="text/javascript">
