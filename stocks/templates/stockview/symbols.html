@@ -71,12 +71,15 @@
         checkedStocks = $("input:checkbox[name=stock]:checked");
         stock_label1 = checkedStocks[0].value;
         additional_stocks1 = "";
+		var label = exchange.value;
         for (var i = 1; i < checkedStocks.length; i++) {
-            additional_stocks1 += checkedStocks[i].value + '.L';
+            additional_stocks1 += checkedStocks[i].value + label;
             if (i != checkedStocks.length-1)
                 additional_stocks1 += ',';
         }
-        stock_label.value = stock_label1 + '.L';
+        stock_label.value = stock_label1 + label;
+		stock.value = stock_label1 + label;
+		updateStock();
         additional_stocks.value = additional_stocks1;
     }
 </script>
