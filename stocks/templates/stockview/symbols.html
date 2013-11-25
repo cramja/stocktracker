@@ -1,35 +1,47 @@
-{% if user.is_authenticated %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <link href="/static/css/flat-ui.css" rel="stylesheet">
+</head>
+<body>
+    <h3 style="text-align:center">{{ user.username }}'s portfolio</h3>
 
-<h2>Your stocks</h2>
-    <p>Remove:
-	{%for stock in stocks %}
-        {{stock.stock.name}}
-        <form action="/remove_stock" method="post">
-        	{% csrf_token %}
-        	<input type="hidden" name="stock" value="{{stock.stock.name}}">
-        	<input type="submit" value = "remove"/>
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <form id="removeStocks" action="/remove_stock" method="post">{% csrf_token %}
+            {% for stock in user_stocks %}
+                <tr>
+                    <td>{{stock.code}}</td>
+                    <td>{{stock.name}}</td>
+                    <td><input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/></td>
+                <tr>
+            {% endfor %}
         </form>
-    {% endfor %}</p>
-    <p>Visualize:
-    <form action="/visualize" method="post">
-    {% csrf_token %}
-    	{%for stock in stocks %}
-            {{stock.stock.name}}
-            <input type="checkbox" name="stock{{for.count}}" value="{{stock.stock.name}}"/>
-        {% endfor %}
-	<input type="submit" value="Visualize Checked"/>
-    </form></p>
+    </table> 
+    <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
+    <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
+    
+    <br/>
+    <br/>
 
-<h2>Add a stock</h2>
-<form action="/add_stock" method="post">
-    {% csrf_token %}
-<select name="stock">
-    {% for s in stocks_codes %}
-        <option value="{{s.code}}">{{s.code}}</option>
-    {% endfor %}
-</select>
-<input type="submit" value="Submit">
-</form>
+    <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
+        <select class="form-control" name="stock">
+            {% for s in other_stocks %}
+                <option value="{{s.code}}">{{s.code}}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
+        <!--<input type="submit" value="Add">-->
+    </form>
+    <script src="/static/js/flatui-checkbox.js"></script>
+</body>
 
  <script>
 //  function getStocks() {
@@ -52,3 +64,23 @@
 //      };
 // </script>
 {% endif %}
+=======
+<script>
+    function submitRemoveStocks() {
+        document.getElementById("removeStocks").submit();
+    }
+    function visualizeStocks() {
+        checkedStocks = $("input:checkbox[name=stock]:checked");
+        stock_label = checkedStocks[0].value;
+        additional_stocks = "";
+        for (int i = 1; i < checkedStocks.length; i++) {
+            additional_stocks += checkedStocks[i].value
+            if (i != checkedStocks.length-1
+                additional_stocks += ', '
+        }
+        $('#stock_label').text(stock_label);
+        $('#additional_stocks').text(additional_stocks);
+    }
+</script>
+</html>
+

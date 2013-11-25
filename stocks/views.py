@@ -1,73 +1,53 @@
-from django.shortcuts import get_object_or_404, render_to_response, redirect, render
-from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
-from django.template import RequestContext
+from django.shortcuts import redirect, render
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
-from django.contrib.auth.views import login as loginview
-from django.core.exceptions import ObjectDoesNotExist
 
-from stocks.models import Stock, UserProfile
+from stocks.models import Stock
 
 def index(request):
-	profile = UserProfile.objects.get(user=request.user)
-	stocks_codes = profile.interests.all()
-	all_stocks = list()
-	for stock in Stock.objects.all():
-		if stock not in stocks_codes:
-			all_stocks.append(stock)
-	return render(request, 'stocks/base.html', {'stocks': stocks_codes, 'stocks_codes': all_stocks})
-	
-def quotes(request):
-	return render(request, 'stockview/quotes.html')
+    if request.user.is_authenticated():
+        profile = request.user.profile
+        userStocks = profile.interests.all()
+        # any stock that is not in userStocks
+        otherStocks = Stock.objects.exclude(pk__in=userStocks.values_list('pk', flat=True))
+        return render(request, 'base.html', {'user_stocks': userStocks, 'other_stocks': otherStocks})
+    else:
+        return render(request, 'base.html', {'stocks_codes': Stock.objects.all()})
 
 def login(request):
-	if not request.user.is_authenticated() and request.method == "POST": 
-		user = authenticate(username=request.POST['username'], password=request.POST['password'])
-		if user is not None:
-			auth_login(request, user)
-	#commented out error checking for now
-	# 	else:
-	# 		error = 'The username/password combo is incorrect'
-	# 		return render(
-	# 			request, 
-	# 			'users/login.html', 
-	# 			{ 'error' : error, 'username' : request.POST['username'], }
-	# 			)
-	# else:
-	# 	return render(request, 'users/login.html')
-	return redirect("/")
+    if not request.user.is_authenticated() and request.method == "POST":
+        user = authenticate(username=request.POST['username'], password=request.POST['password'])
+        if user is not None:
+            auth_login(request, user)
+    return redirect("/")
 
 def logout(request):
-	auth_logout(request)
-	return redirect("/")
+    auth_logout(request)
+    return redirect("/")
 
 def register(request):
-	if request.user.is_authenticated():
-		return redirect("/")
-	return render(request, 'users/register.html')
+    if request.user.is_authenticated():
+        return redirect("/")
+    return render(request, 'users/register.html')
 
 def create(request):
-	if request.method == "POST":
-		error = []
-		if User.objects.filter(username__iexact=request.POST['username']).count() != 0:
-			error.append("Username already taken")
-		if request.POST['password1'] != request.POST['password0']:
-			error.append("Passwords do not match")
-		if len(error) == 0:
-			newuser = User(username = request.POST['username'])
-			newuser.set_password(request.POST['password0'])
-			newuser.save()
-			string = 'We have created an account for: ' + newuser.username
-			return redirect("/")
-	return redirect("/register/")
+    if request.method == "POST":
+        if User.objects.filter(username__iexact=request.POST['username']).count() != 0:
+            # Username is already in use
+            return redirect("/register")
+        if request.POST['password1'] != request.POST['password0']:
+            # Passwords don't match
+            return redirect("/register")
+        newUser = User(username = request.POST['username'])
+        newUser.set_password(request.POST['password0'])
+        newUser.save()
+    return redirect("/")
 
 def getStocks(request):
-    """
-    Gets all of the stocks from the database and converts them
-    to JSON with the associated metadata
-    """
+    # Gets all of the stocks from the database and converts them
+    # to JSON with the associated metadata
     stocks = Stock.objects.all()
     if not messages.exists:
         return HttpResponse("{}")
@@ -79,27 +59,24 @@ def getStocks(request):
                 "code": s.code,
                 "name": s.name
             })
-
         return HttpResponse(json.dumps(retList))
 
 @login_required
 def addStock(request):
-	if (request.method == 'POST'):
-		stockID = request.POST['stock'].upper()
-		matchingStock = Stock.objects.get(code=stockID)
-		profile, created = UserProfile.objects.get_or_create(user=request.user)
-		profile.interests.add(matchingStock)
-	return redirect("/")
+    if (request.method == 'POST'):
+        stockCode = request.POST['stock'].upper()
+        stock = Stock.objects.get(code=stockCode)
+        profile = request.user.profile
+        profile.interests.add(stock)
+        profile.save()
+    return redirect("/")
 
 @login_required
 def removeStock(request):
-	if (request.method == 'POST'):
-		stockID = request.POST['code'].upper()
-		removed = False
-		try:
-			matchingStock = Stock.objects.get(code=stockID)
-			matchingStock.users.remove(User)
-			removed = True
-		except ObjectDoesNotExist:
-			pass
-	return render(request, 'stocks/base.html', {'fromRemove': True, 'removed': removed, 'stockID': stockID})
+    if (request.method == 'POST'):
+        checkboxes = request.POST.getlist('stock')
+        userStocks = request.user.profile.interests
+        for stock in checkboxes:
+            stock = Stock.objects.get(code=stock)
+            userStocks.remove(stock)
+    return redirect("/")

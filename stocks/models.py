@@ -6,7 +6,7 @@ class Stock(models.Model):
     name = models.CharField(max_length=100)
 
 class UserProfile(models.Model):
-	user = models.ForeignKey(User, primary_key=True, unique=True)
-	interests = models.ManyToManyField(Stock)
+    user = models.ForeignKey(User, primary_key=True, unique=True)
+    interests = models.ManyToManyField(Stock)
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

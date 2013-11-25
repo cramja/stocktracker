@@ -1,51 +1,69 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-</script>
-<script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <link rel="stylesheet" type="text/css" href="/static/css/flat-ui.css" />
+</head>
+<body>
+    <br>
+    <h4>Stock Quotes</h4>
+    <!-- Stock ID -->
+    <input type="text" id="stock" class="form-control input-sm" placeholder="Stock ID e.g. GOOG" />
+    <!-- Date Range -->
+    <input type="date" class="form-control input-sm" id="start"/> to
+    <input type="date" class="form-control input-sm" id="end"/>
+    <script type="text/javascript">
+        document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+        document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+    </script>
+
+    <button class="btn btn-default btn-primary" id="getstockbutton" onclick="updateStock()">Get Stocks</button>
+
+    <div id="output" ><pre> Date        Open    High    Low Close   Volume</pre></div>
+    <script type="text/javascript" src="/static/js/jquery-2.0.3.min.js"></script>
+</body>
     
+    <script type="text/javascript">
     var stockFunction = null;
-	
-    
     (
         function($) {
-    
             function printStock(data) {
-				try{
-					console.log(data);
-					if (data.query.results.quote[0].High) {
-                    for (var i = 0; i < data.query.count; i++) {
-                        document.getElementById("output").innerHTML += "<pre>" + 
-                        "   " + data.query.results.quote[i].date +
-                        "   " + data.query.results.quote[i].Open +
-                        "   " + data.query.results.quote[i].High + 
-                        "   " + data.query.results.quote[i].Low + 
-                        "   " + data.query.results.quote[i].Close +
-                        "   " + data.query.results.quote[i].Volume +
-                        "</pre>";
-                    }
-                } else {
-                    for (var i = 0; i < data.query.count; i++) {
-                        document.getElementById("output").innerHTML += "<pre>" + 
-                        "   " + data.query.results.quote[i].col0 +
-                        "   " + data.query.results.quote[i].col1 +
-                        "   " + data.query.results.quote[i].col2 + 
-                        "   " + data.query.results.quote[i].col3 + 
-                        "   " + data.query.results.quote[i].col4 +
-                        "   " + data.query.results.quote[i].col5 +
-                        "</pre>";
+                try {
+                    console.log(data);
+                    if (data.query.results.quote[0].High) {
+                        for (var i = 0; i < data.query.count; i++) {
+                            document.getElementById("output").innerHTML += "<pre>" +
+                            data.query.results.quote[i].date +
+                            "   " + data.query.results.quote[i].Open +
+                            "   " + data.query.results.quote[i].High +
+                            "   " + data.query.results.quote[i].Low +
+                            "   " + data.query.results.quote[i].Close +
+                            "   " + data.query.results.quote[i].Volume +
+                            "</pre>";
+                        }
+                    } else {
+                        for (var i = 0; i < data.query.count; i++) {
+                            document.getElementById("output").innerHTML += "<pre>" +
+                            data.query.results.quote[i].col0 +
+                            "   " + data.query.results.quote[i].col1 +
+                            "   " + data.query.results.quote[i].col2 +
+                            "   " + data.query.results.quote[i].col3 +
+                            "   " + data.query.results.quote[i].col4 +
+                            "   " + data.query.results.quote[i].col5 +
+                            "</pre>";
+                        }
                     }
                 }
-				}
-				catch (err) {
-				
-					alert("Unable to fetch stocks, try increasing your date range");
-				
-				}
+                catch (err) {
+                    alert("Unable to fetch stocks, try increasing your date range");
+                }
+
                 document.getElementById("getstockbutton").value = "Get Stocks";
             }
 
             function getStock() {
                 var args = {
-                    stock: document.getElementById("stock").value,
+                    stock: document.getElementById("stock").value + '.L',
                     startDate: document.getElementById("start").value,
                     endDate: document.getElementById("end").value,
                 };
@@ -53,7 +71,7 @@
                 var base = 'http://query.yahooapis.com/v1/public/yql?q=';
                 var query = 'select * from yahoo.finance.historicaldata where symbol = "{stock}" and startDate = "{startDate}" and endDate = "{endDate}"';
                 var suffix = '&env=store://datatables.org/alltableswithkeys&format=json&callback=?';
-         
+
                 args = args || {};
                 if (!args.stock) {
                     alert('No stock defined');
@@ -65,32 +83,15 @@
                 .replace('{endDate}', args.endDate)
                 var url = base + query + suffix;
 
-                $.getJSON(url, function(data){printStock(data);} );
+                $.getJSON(url, function(data){printStock(data);});
             }
-        stockFunction = getStock;
+            stockFunction = getStock;
         }
-    )
-    (jQuery);
+    ) (jQuery);
 
     function updateStock(args) {
         stockFunction(args);
     }
-</script>
+    </script>
 
-	<h2>Stock Quotes</h2>
-	
-	Stock Label: <input type="text" id="stock" placeholder="prefix indexes with '^'"/>
-	
-	Start Date: <input type="date" id="start"/>
-	
-	End Date: <input type="date" id="end" />
-	
-	<script type="text/javascript">
-		document.getElementById('start').value = new Date().toISOString().substring(0, 10);
-		document.getElementById('end').value = new Date().toISOString().substring(0, 10);
-	</script>
-	
-	<input type="button" id="getstockbutton" onclick="updateStock()" value="Get Stocks" />
-	
-	<div id="output" ><pre>	Date		Open	High	Low	Close	Volume</pre></div>
-
+</html>

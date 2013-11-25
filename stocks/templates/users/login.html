@@ -1,18 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="/static/css/flat-ui.css" rel="stylesheet">
+</head>
+
 {% if user.is_authenticated %}
-	<div>
-		{{ user.username }}
-		<a href="/logout">Logout</a>
-	</div>
+    <div>
+        <button class="btn btn-default btn-default" onclick="logout()">Logout</button>
+    </div>
+
 {% else %}
-	<div>
-		<form action="/login" method="post">
-			{% csrf_token %}
-			<h2>Please sign in</h2>
-			<div>{{ error }}</div>
-			<input type="text" placeholder="Username" name="username" required autofocus value="{{ username }}">
-			<input type="password" placeholder="Password" name="password" required>
-			<button type="submit">Sign in</button>
-		</form>
-		<a href="/register">Create Account</a>
-	</div>
+    <form role="form" action="/login" method="post"> {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" name="username" required autofocus value="{{ username }}" />
+            <input type="password" class="form-control" placeholder="Password" name="password" required />
+            <button type="submit" class="btn btn-default btn-default">Login</button>
+            <button class="btn btn-default btn-default" onclick="register()">Register</button>
+        </div>
+    </form>
+
 {% endif %}
+
+<script type="text/javascript">
+
+function logout() {
+    window.location.href = "/logout";
+}
+
+function register() {
+    window.location.href = "/register";
+}
+
+</script>
