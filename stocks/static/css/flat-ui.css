@@ -198,7 +198,7 @@ you can use the generic selector below, but it's slower:
 }
 body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.72222;
   color: #34495e;
   background-color: #ffffff;
@@ -443,7 +443,7 @@ pre {
   font-weight: normal;
   line-height: 1.4;
   border-radius: 4px;
-  padding: 10px 15px;
+  padding: 5px 10px;
   -webkit-font-smoothing: subpixel-antialiased;
   -webkit-transition: 0.25s linear;
   transition: 0.25s linear;
@@ -1484,7 +1484,6 @@ label {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 15px;
   padding: 8px 12px;
-  height: 42px;
   -webkit-appearance: none;
   border-radius: 6px;
   -webkit-box-shadow: none;
@@ -1517,8 +1516,8 @@ fieldset[disabled] .form-control {
   border-color: #1abc9c;
 }
 .input-sm {
-  height: 35px;
-  padding: 6px 10px;
+  height: 30px;
+  padding: 0px 5px;
   font-size: 13px;
   line-height: 1.72222;
   border-radius: 6px;
