@@ -3,13 +3,21 @@
     "model": "stocks.Stock",
     "pk": 1,
     "fields": {
+      "code": "^FTSE",
+      "name": "FTSE 100"
+    }
+  },
+  {
+    "model": "stocks.Stock",
+    "pk": 2,
+    "fields": {
       "code": "ABF",
       "name": "Associated British Foods"
     }
   },
   {
     "model": "stocks.Stock",
-    "pk": 2,
+    "pk": 3,
     "fields": {
       "code": "ADN",
       "name": "Aberdeen Asset Management"
@@ -17,7 +25,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 3,
+    "pk": 4,
     "fields": {
       "code": "ADM",
       "name": "Admiral"
@@ -25,7 +33,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 4,
+    "pk": 5,
     "fields": {
       "code": "AGK",
       "name": "Aggreko"
@@ -33,7 +41,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 5,
+    "pk": 6,
     "fields": {
       "code": "AMEC",
       "name": "AMEC"
@@ -41,7 +49,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 6,
+    "pk": 7,
     "fields": {
       "code": "AAL",
       "name": "Anglo American"
@@ -49,7 +57,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 7,
+    "pk": 8,
     "fields": {
       "code": "ANTO",
       "name": "Antofagasta"
@@ -57,7 +65,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 8,
+    "pk": 9,
     "fields": {
       "code": "ARM",
       "name": "ARM"
@@ -65,7 +73,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 9,
+    "pk": 10,
     "fields": {
       "code": "AZN",
       "name": "AstraZeneca"
@@ -73,7 +81,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 10,
+    "pk": 11,
     "fields": {
       "code": "AV",
       "name": "Aviva"
@@ -81,7 +89,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 11,
+    "pk": 12,
     "fields": {
       "code": "BAB",
       "name": "Babcock"
@@ -89,7 +97,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 12,
+    "pk": 13,
     "fields": {
       "code": "BA",
       "name": "BAE Systems"
@@ -97,7 +105,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 13,
+    "pk": 14,
     "fields": {
       "code": "BARC",
       "name": "Barclays"
@@ -105,7 +113,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 14,
+    "pk": 15,
     "fields": {
       "code": "BG",
       "name": "BG"
@@ -113,7 +121,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 15,
+    "pk": 16,
     "fields": {
       "code": "BLT",
       "name": "BHP Billiton"
@@ -121,7 +129,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 16,
+    "pk": 17,
     "fields": {
       "code": "BP",
       "name": "BP"
@@ -129,7 +137,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 17,
+    "pk": 18,
     "fields": {
       "code": "BATS",
       "name": "British American Tobacco"
@@ -137,7 +145,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 18,
+    "pk": 19,
     "fields": {
       "code": "BLND",
       "name": "British Land Company"
@@ -145,7 +153,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 19,
+    "pk": 20,
     "fields": {
       "code": "BSY",
       "name": "BSKYB"
@@ -153,7 +161,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 20,
+    "pk": 21,
     "fields": {
       "code": "BT.A",
       "name": "BT"
@@ -161,7 +169,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 21,
+    "pk": 22,
     "fields": {
       "code": "BNZL",
       "name": "Bunzl"
@@ -169,7 +177,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 22,
+    "pk": 23,
     "fields": {
       "code": "BRBY",
       "name": "Burberry"
@@ -177,7 +185,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 23,
+    "pk": 24,
     "fields": {
       "code": "CPI",
       "name": "Capita"
@@ -185,7 +193,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 24,
+    "pk": 25,
     "fields": {
       "code": "CCL",
       "name": "Carnival"
@@ -193,7 +201,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 25,
+    "pk": 26,
     "fields": {
       "code": "CNA",
       "name": "Centrica"
@@ -201,7 +209,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 26,
+    "pk": 27,
     "fields": {
       "code": "CCH",
       "name": "Coca Cola"
@@ -209,7 +217,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 27,
+    "pk": 28,
     "fields": {
       "code": "CPG",
       "name": "Compass"
@@ -217,7 +225,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 28,
+    "pk": 29,
     "fields": {
       "code": "CRH",
       "name": "CRH"
@@ -225,7 +233,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 29,
+    "pk": 30,
     "fields": {
       "code": "CRDA",
       "name": "Crawford & Co."
@@ -233,7 +241,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 30,
+    "pk": 31,
     "fields": {
       "code": "DGE",
       "name": "Diageo"
@@ -241,7 +249,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 31,
+    "pk": 32,
     "fields": {
       "code": "EZJ",
       "name": "easyJet"
@@ -249,7 +257,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 32,
+    "pk": 33,
     "fields": {
       "code": "EXPN",
       "name": "Experian"
@@ -257,7 +265,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 33,
+    "pk": 34,
     "fields": {
       "code": "FRES",
       "name": "Fresnillo"
@@ -265,7 +273,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 34,
+    "pk": 35,
     "fields": {
       "code": "GFS",
       "name": "G4S"
@@ -273,7 +281,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 35,
+    "pk": 36,
     "fields": {
       "code": "GKN",
       "name": "GKN"
@@ -281,7 +289,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 36,
+    "pk": 37,
     "fields": {
       "code": "GSK",
       "name": "GlaxoSmithKline"
@@ -289,7 +297,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 37,
+    "pk": 38,
     "fields": {
       "code": "GLEN",
       "name": "Glencore Xstrata"
@@ -297,7 +305,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 38,
+    "pk": 39,
     "fields": {
       "code": "HMSO",
       "name": "Hammerson"
@@ -305,7 +313,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 39,
+    "pk": 40,
     "fields": {
       "code": "HL",
       "name": "Hargreaves Lansdown"
@@ -313,7 +321,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 40,
+    "pk": 41,
     "fields": {
       "code": "HSBA",
       "name": "HSBC"
@@ -321,7 +329,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 41,
+    "pk": 42,
     "fields": {
       "code": "IMI",
       "name": "IMI"
@@ -329,7 +337,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 42,
+    "pk": 43,
     "fields": {
       "code": "IMT",
       "name": "Imperial Tobacco"
@@ -337,7 +345,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 43,
+    "pk": 44,
     "fields": {
       "code": "IHG",
       "name": "InterContinental Hotels"
@@ -345,7 +353,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 44,
+    "pk": 45,
     "fields": {
       "code": "ITRK",
       "name": "Intertek"
@@ -353,7 +361,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 45,
+    "pk": 46,
     "fields": {
       "code": "IAG",
       "name": "International Consolidated Airlines"
@@ -361,7 +369,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 46,
+    "pk": 47,
     "fields": {
       "code": "ITV",
       "name": "ITV"
@@ -369,7 +377,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 47,
+    "pk": 48,
     "fields": {
       "code": "JMAT",
       "name": "Johnson Matthey"
@@ -377,7 +385,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 48,
+    "pk": 49,
     "fields": {
       "code": "KGF",
       "name": "Kingfisher"
@@ -385,7 +393,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 49,
+    "pk": 50,
     "fields": {
       "code": "LAND",
       "name": "Land Securities"
@@ -393,7 +401,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 50,
+    "pk": 51,
     "fields": {
       "code": "LGEN",
       "name": "Legal & General"
@@ -401,7 +409,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 51,
+    "pk": 52,
     "fields": {
       "code": "LLOY",
       "name": "Lloyds Banking"
@@ -409,7 +417,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 52,
+    "pk": 53,
     "fields": {
       "code": "LSE",
       "name": "London Stock Exchange"
@@ -417,7 +425,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 53,
+    "pk": 54,
     "fields": {
       "code": "MKS",
       "name": "Marks and Spencer"
@@ -425,7 +433,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 54,
+    "pk": 55,
     "fields": {
       "code": "MGGT",
       "name": "Meggitt"
@@ -433,7 +441,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 55,
+    "pk": 56,
     "fields": {
       "code": "MRO",
       "name": "Melrose Industries"
@@ -441,7 +449,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 56,
+    "pk": 57,
     "fields": {
       "code": "MNDI",
       "name": "Mondi"
@@ -449,7 +457,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 57,
+    "pk": 58,
     "fields": {
       "code": "MRW",
       "name": "WM Morrison Supermarkets"
@@ -457,7 +465,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 58,
+    "pk": 59,
     "fields": {
       "code": "NG",
       "name": "National Grid"
@@ -465,7 +473,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 59,
+    "pk": 60,
     "fields": {
       "code": "NXT",
       "name": "NEXT"
@@ -473,7 +481,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 60,
+    "pk": 61,
     "fields": {
       "code": "OML",
       "name": "Old Mutual"
@@ -481,7 +489,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 61,
+    "pk": 62,
     "fields": {
       "code": "PSON",
       "name": "Pearson"
@@ -489,7 +497,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 62,
+    "pk": 63,
     "fields": {
       "code": "PSN",
       "name": "Persimmon"
@@ -497,7 +505,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 63,
+    "pk": 64,
     "fields": {
       "code": "PFC",
       "name": "Petrofac"
@@ -505,7 +513,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 64,
+    "pk": 65,
     "fields": {
       "code": "PRU",
       "name": "Prudential"
@@ -513,7 +521,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 65,
+    "pk": 66,
     "fields": {
       "code": "RRS",
       "name": "Randgold Resources"
@@ -521,7 +529,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 66,
+    "pk": 67,
     "fields": {
       "code": "RDSA",
       "name": "Royal Dutch Shell (ADR)"
@@ -529,7 +537,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 67,
+    "pk": 68,
     "fields": {
       "code": "RDSB",
       "name": "Royal Dutch Shell 'B'"
@@ -537,7 +545,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 68,
+    "pk": 69,
     "fields": {
       "code": "RB",
       "name": "Reckitt Benckiser"
@@ -545,7 +553,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 69,
+    "pk": 70,
     "fields": {
       "code": "REL",
       "name": "Reed Elsevier"
@@ -553,7 +561,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 70,
+    "pk": 71,
     "fields": {
       "code": "RSL",
       "name": "Resolution"
@@ -561,7 +569,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 71,
+    "pk": 72,
     "fields": {
       "code": "REX",
       "name": "Rexam"
@@ -569,7 +577,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 72,
+    "pk": 73,
     "fields": {
       "code": "RIO",
       "name": "Rio Tinto"
@@ -577,7 +585,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 73,
+    "pk": 74,
     "fields": {
       "code": "RR",
       "name": "Rolls-Royce"
@@ -585,7 +593,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 74,
+    "pk": 75,
     "fields": {
       "code": "RBS",
       "name": "Royal Bank of Scotland"
@@ -593,7 +601,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 75,
+    "pk": 76,
     "fields": {
       "code": "RSA",
       "name": "RSA Insurance"
@@ -601,7 +609,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 76,
+    "pk": 77,
     "fields": {
       "code": "SAB",
       "name": "SABMiller"
@@ -609,7 +617,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 77,
+    "pk": 78,
     "fields": {
       "code": "SGE",
       "name": "Sage"
@@ -617,7 +625,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 78,
+    "pk": 79,
     "fields": {
       "code": "SBRY",
       "name": "J Sainsbury"
@@ -625,7 +633,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 79,
+    "pk": 80,
     "fields": {
       "code": "SDR",
       "name": "Schroders"
@@ -633,7 +641,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 80,
+    "pk": 81,
     "fields": {
       "code": "SVT",
       "name": "Severn Trent"
@@ -641,7 +649,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 81,
+    "pk": 82,
     "fields": {
       "code": "SHP",
       "name": "Shire"
@@ -649,7 +657,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 82,
+    "pk": 83,
     "fields": {
       "code": "SN",
       "name": "Smith & Nephew"
@@ -657,7 +665,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 83,
+    "pk": 84,
     "fields": {
       "code": "SMN",
       "name": "Smiths"
@@ -665,7 +673,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 84,
+    "pk": 85,
     "fields": {
       "code": "SPD",
       "name": "Sports Direct"
@@ -673,7 +681,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 85,
+    "pk": 86,
     "fields": {
       "code": "SSE",
       "name": "SSE"
@@ -681,7 +689,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 86,
+    "pk": 87,
     "fields": {
       "code": "STAN",
       "name": "Standard Chartered"
@@ -689,7 +697,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 87,
+    "pk": 88,
     "fields": {
       "code": "SL",
       "name": "Standard Life"
@@ -697,7 +705,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 88,
+    "pk": 89,
     "fields": {
       "code": "TATE",
       "name": "Tate & Lyle"
@@ -705,7 +713,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 89,
+    "pk": 90,
     "fields": {
       "code": "TSCO",
       "name": "Tesco"
@@ -713,7 +721,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 90,
+    "pk": 91,
     "fields": {
       "code": "TPK",
       "name": "Travis Perkins"
@@ -721,7 +729,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 91,
+    "pk": 92,
     "fields": {
       "code": "TT",
       "name": "TUI Travel"
@@ -729,7 +737,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 92,
+    "pk": 93,
     "fields": {
       "code": "TLW",
       "name": "Tullow Oil"
@@ -737,7 +745,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 93,
+    "pk": 94,
     "fields": {
       "code": "ULVR",
       "name": "Unilever"
@@ -745,7 +753,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 94,
+    "pk": 95,
     "fields": {
       "code": "UU",
       "name": "United Utilities"
@@ -753,7 +761,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 95,
+    "pk": 96,
     "fields": {
       "code": "VED",
       "name": "Vedanta"
@@ -761,7 +769,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 96,
+    "pk": 97,
     "fields": {
       "code": "VOD",
       "name": "Vodafone"
@@ -769,7 +777,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 97,
+    "pk": 98,
     "fields": {
       "code": "WEIR",
       "name": "Weir"
@@ -777,7 +785,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 98,
+    "pk": 99,
     "fields": {
       "code": "WTB",
       "name": "Whitbread"
@@ -785,7 +793,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 99,
+    "pk": 100,
     "fields": {
       "code": "WMH",
       "name": "William Hill"
@@ -793,7 +801,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 100,
+    "pk": 101,
     "fields": {
       "code": "WOS",
       "name": "Wolseley"
@@ -801,7 +809,7 @@
   },
   {
     "model": "stocks.Stock",
-    "pk": 101,
+    "pk": 102,
     "fields": {
       "code": "WPP",
       "name": "WPP"
