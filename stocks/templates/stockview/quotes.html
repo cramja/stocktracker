@@ -46,6 +46,7 @@
         function($) {
             function printStock(data) {
                 try {
+					document.getElementById("output").innerHTML = "";
                     console.log(data);
                     if (data.query.results.quote[0].High) {
                         for (var i = 0; i < data.query.count; i++) {
