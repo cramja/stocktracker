@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset=utf-8>
-    <link href="/static/css/flat-ui.css" rel="stylesheet">
-</head>
-<body>
-    <h3 style="text-align:center">{{ user.username }}'s portfolio</h3>
+<h3 style="text-align:center">{{ user.username }}'s portfolio</h3>
 {% if user_stocks != None %}
     <table>
         <thead>
@@ -32,17 +25,16 @@
     <br/>
 {% endif %}
 
-    <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
-        <select class="form-control" name="stock">
-            {% for s in other_stocks %}
-                <option value="{{s.code}}">{{s.code}}</option>
-            {% endfor %}
-        </select>
-        <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
-        <!--<input type="submit" value="Add">-->
-    </form>
-    <script src="/static/js/flatui-checkbox.js"></script>
-</body>
+<form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
+    <select class="form-control" name="stock">
+        {% for s in other_stocks %}
+            <option value="{{s.code}}">{{s.code}}</option>
+        {% endfor %}
+    </select>
+    <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
+    <!--<input type="submit" value="Add">-->
+</form>
+<script src="/static/js/flatui-checkbox.js"></script>
 
  <script>
 //  function getStocks() {
@@ -83,5 +75,3 @@
         additional_stocks.value = additional_stocks1;
     }
 </script>
-</html>
-
