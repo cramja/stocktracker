@@ -79,22 +79,17 @@
     }
 </script>
 
-</br>
-
 <div class="footer-container">
     <a href="#" class="toggle">PORTFOLIO</a>
     <div class="footer">
         {% if user_stocks != None %}
             <input type="date" class="form-control input-sm" id="start" /> to <input type="date" class="form-control input-sm" id="end" />
+            <script type="text/javascript">
+                document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
+                document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+            </script>
 
-        <script type="text/javascript">
-            document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
-            document.getElementById('end').value = new Date().toISOString().substring(0, 10);
-        </script>
-
-            </br>
-            <div><input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value="Get Stocks" /></div>
-
+            <input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value="Retrieve Data" />
             <table cellpadding="7">
                 <thead>
                     <tr>

@@ -1,7 +1,9 @@
 {% if user.is_authenticated %}
     <div class="footer-container">
         <a href="#" class="toggle"  onclick="logout()">LOGOUT</a>
-        <div class="footer_link"></div>
+        <div class="footer_link">
+            <p></p>
+        </div>
     </div>
 
 {% else %}
@@ -25,10 +27,6 @@
 
 function logout() {
     window.location.href = "/logout";
-}
-
-function register() {
-    window.location.href = "/register";
 }
 
 </script>
