@@ -1,6 +1,29 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-</script>
-<script type="text/javascript">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <link rel="stylesheet" type="text/css" href="/static/css/flat-ui.css" />
+</head>
+<body>
+    <br>
+    <h4>Stock Quotes</h4>
+    <!-- Stock ID -->
+    <input type="text" id="stock" class="form-control input-sm" placeholder="Stock ID e.g. GOOG" />
+    <!-- Date Range -->
+    <input type="date" class="form-control input-sm" id="start"/> to
+    <input type="date" class="form-control input-sm" id="end"/>
+    <script type="text/javascript">
+        document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+        document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+    </script>
+
+    <button class="btn btn-default btn-primary" id="getstockbutton" onclick="updateStock()">Get Stocks</button>
+
+    <div id="output" ><pre> Date        Open    High    Low Close   Volume</pre></div>
+    <script type="text/javascript" src="/static/js/jquery-2.0.3.min.js"></script>
+</body>
+    
+    <script type="text/javascript">
     var stockFunction = null;
     (
         function($) {
@@ -69,22 +92,6 @@
     function updateStock(args) {
         stockFunction(args);
     }
-</script>
+    </script>
 
-<h2>Stock Quotes</h2>
-
-Stock Label: <input type="text" id="stock" placeholder="prefix indexes with '^'"/>
-
-Start Date: <input type="date" id="start"/>
-
-End Date: <input type="date" id="end"/>
-
-<script type="text/javascript">
-    document.getElementById('start').value = new Date().toISOString().substring(0, 10);
-    document.getElementById('end').value = new Date().toISOString().substring(0, 10);
-</script>
-
-<input type="button" id="getstockbutton" onclick="updateStock()" value="Get Stocks"/>
-
-<div id="output" ><pre> Date        Open    High    Low Close   Volume</pre></div>
-
+</html>

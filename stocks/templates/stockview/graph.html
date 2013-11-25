@@ -1,61 +1,47 @@
-<script>
-    setInterval(
-        function() {
-            var stock_label = document.getElementById("stock_label").value;
-            var time = document.getElementById("time").value;
-            var chart = document.getElementById("charttype").value;
-            var scale = document.getElementById("scale").value;
-            var size = document.getElementById("size").value;
-            var region = document.getElementById("region").value;
-            var additional_stocks = document.getElementById("additional_stocks").value;
-            document.getElementById("chart").src="http://chart.finance.yahoo.com/z?s=" + stock_label + "&t=" + time + "&q=" + chart + "&l=" + scale + "&z=" + size + "&c=" + additional_stocks + "&region=" + region + "&lang=en-GB";
-            }, 5000);
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8>
+    <link href="/static/css/flat-ui.css" rel="stylesheet">
+    <script>
+        setInterval(
+            function() {
+                var stock_label = document.getElementById("stock_label").value;
+                var time = document.getElementById("time").value;
+                var chart = document.getElementById("charttype").value;
+                var additional_stocks = document.getElementById("additional_stocks").value;
+                additional_stocks = additional_stocks.replace(/\s+/g, '');
+                document.getElementById("chart").src="http://chart.finance.yahoo.com/z?s=" + stock_label + "&t=" + time + "&q=" + chart + "&l=on" + "&z=l" + "&c=" + additional_stocks + "&region=GB" + "&lang=en-GB";
+                }, 5000);
+    </script>
+</head>
+<body>
+    <h4>Stock Comparison</h4>
 
-<h2>Stock Visualisation</h2>
+    <input type="text" class="form-control input-sm" id="stock_label" placeholder="Stock ID" size="10"/>
+    <input type="text" data-toggle="tooltip" title="Separate ID's by comma" class="form-control input-sm btn-wide" id="additional_stocks" placeholder="Additional Stocks" size="10"/>
 
-<p>Please select your stock preferences:</p>
+    <select class="form-control" id="time">
+        <optgroup label="Range">
+        <option value="1d">1 Day</option>
+        <option value="5d">5 Days</option>
+        <option value="3m">3 Months</option>
+        <option value="6m">6 Months</option>
+        <option value="1y">1 Year</option>
+        <option value="2y">2 Years</option>
+        <option value="5y">5 Years</option>
+        <option value="my">Maximum</option>
+    </select>
 
-Stock:
-<input type="text" id="stock_label" placeholder="prefix indexes with '^'" size="10"/>
-Additional Stocks:
-<input type="text" id="additional_stocks"/>
+    <select class="form-control" id="charttype">
+        <optgroup label="Chart Type">
+        <option value="l">Line Graph</option>
+        <option value="b">Bar Graph</option>
+        <option value="c">Candle Graph</option>
+    </select>
 
-Time:
-<select id="time">
-    <option value="1d">1 Day</option>
-    <option value="5d">5 Days</option>
-    <option value="3m">3 Months</option>
-    <option value="6m">6 Months</option>
-    <option value="1y">1 Year</option>
-    <option value="2y">2 Years</option>
-    <option value="5y">5 Years</option>
-    <option value="my">Maximum</option>
-</select>
+    <p style="text-align:center"><img src="" id="chart" ></p>
 
-Chart:
-<select id="charttype">
-    <option value="l">Line</option>
-    <option value="b">Bar</option>
-    <option value="c">Candle</option>
-</select>
-
-Scale:
-<select id="scale">
-    <option value="on">Logarithmic</option>
-    <option value="off">Arithmetic</option>
-</select>
-
-Size:
-<select id="size">
-    <option value="l">Large</option>
-    <option value="m">Medium</option>
-    <option value="s">Small</option>
-</select>
-
-Region:
-<input type="text" id="region" value="GB" size="3"/>
-
-<p style="text-align:center">
-    <img src="" id="chart" >
-</p>
+    <script type="text/javascript" src="/static/js/bootstrap-select.js"></script>
+</body>
+</html>

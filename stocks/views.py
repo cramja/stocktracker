@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 
-from models import Stock
+from stocks.models import Stock
 
 def index(request):
     if request.user.is_authenticated():
