@@ -15,8 +15,8 @@
         {% include 'stockview/symbols.html' %}
     {% endif %}
 
-    {% if user.is_authenticated %}
-            {% include 'stockview/recommendation.html' %}
+    {% if recommended != None %}
+        {% include 'stockview/recommendation.html' %}
     {% else %}
         {% include 'stockview/quotes.html' %}
     {% endif %}

@@ -1,2 +1,7 @@
 <h4>Recommended Shares</h4>
-GlaxoSmithKline (GSK), Tesco (TSCO), ARM Holdings (ARM), BAE Systems (BAE)
+
+<form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
+    {% for s in recommended %}
+        <button class="btn btn-default btn-primary" name="stock" value="{{s.code}}" type="submit">{{s.name}} ({{s.code}})</button>
+    {% endfor %}
+</form>

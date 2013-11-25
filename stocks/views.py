@@ -14,9 +14,12 @@ def index(request):
         otherStocks = Stock.objects.exclude(pk__in=userStocks.values_list('pk', flat=True))
         if (len(userStocks) == 0):
             userStocks = None
-        return render(request, 'base.html', {'user_stocks': userStocks, 'other_stocks': otherStocks})
+        recommendedStocks = otherStocks.filter(recommended=True)
+        if (len(recommendedStocks) == 0):
+            recommendedStocks = None
+        return render(request, 'base.html', {'user_stocks': userStocks, 'other_stocks': otherStocks, 'recommended': recommendedStocks})
     else:
-        return render(request, 'base.html', {'stocks_codes': Stock.objects.all()})
+        return render(request, 'base.html', {'stocks_codes': Stock.objects.all(), 'recommended': None})
 
 def login(request):
     if not request.user.is_authenticated() and request.method == "POST":
