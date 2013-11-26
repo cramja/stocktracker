@@ -15,5 +15,7 @@ urlpatterns = patterns('stocks.views',
     url(r'^add_stock$', 'addStock'),
     url(r'^remove_stock$', 'removeStock'),
 
+    url(r'^update_recs$', 'updateRecommendations'),
+
     url(r'^admin/', include(admin.site.urls)),
 )

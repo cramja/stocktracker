@@ -85,3 +85,11 @@ def removeStock(request):
             stock = Stock.objects.get(code=stock)
             userStocks.remove(stock)
     return redirect("/")
+
+@login_required
+def updateRecommendations(request):
+    allStocks = Stock.objects.all()
+    for stock in allStocks:
+        stock.recommended = False
+        stock.save()
+    return redirect('/')
