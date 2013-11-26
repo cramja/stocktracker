@@ -81,7 +81,7 @@
 
 {% if user_stocks != None %}
 <div class="footer-container">
-    <a href="#" class="toggle">PORTFOLIO</a>
+    <a href="#" class="toggle is-open">PORTFOLIO</a>
     <div class="footer">
 
         <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
@@ -137,11 +137,8 @@
         </script>
         <input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value=""/>
 
-            <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
-            <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
-            
-            <br/>
-            <br/>
+        <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
+        <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
         {% endif %}
     </div>
 </div>

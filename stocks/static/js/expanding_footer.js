@@ -1,4 +1,4 @@
-$(".footer, .toggle:not(:first-child)").hide();
+//$(".footer, .toggle:not(:first-child)").hide();
 
 $(".toggle").click(function(e) {
 
