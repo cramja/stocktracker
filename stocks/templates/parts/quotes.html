@@ -68,13 +68,17 @@ var stockFunction = null;
             document.getElementById("getstockbutton").value = "Get Stocks";
         }
 
+        function endsWith(s, end) {
+            return s.lastIndexOf(end) + end.length === s.length;
+        }
+
         function getStock() {
             var args = {
                 stock: document.getElementById("stock").value,
                 startDate: document.getElementById("start").value,
                 endDate: document.getElementById("end").value,
             };
-            if (args.stock.indexOf("^") == -1)
+            if (args.stock.indexOf("^") == -1 && !endsWith(args.stock, exchange.value))
                 args.stock += exchange.value;
             document.getElementById("getstockbutton").value = "Loading";
             var base = 'http://query.yahooapis.com/v1/public/yql?q=';

@@ -41,9 +41,6 @@
             startDate: document.getElementById("start").value,
             endDate: document.getElementById("end").value,
         };
-        if (args.stock.indexOf("^") == -1)
-            args.stock +=".L";
-
         document.getElementById("getstockbutton").value = "Loading";
 
         var base = 'http://query.yahooapis.com/v1/public/yql?q=';
@@ -148,8 +145,7 @@
         stock_label1 = checkedStocks[0].value;
         additional_stocks1 = "";
         for (i = 1; i < checkedStocks.length; i++) {
-            additional_stocks1 += checkedStocks[i].value + '.L';
-            
+            additional_stocks1 += checkedStocks[i].value;
             if (i != checkedStocks.length-1)
                 additional_stocks1 += ',';
         }
