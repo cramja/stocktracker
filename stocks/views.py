@@ -4,11 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 
-import random, datetime
-from urllib.request import urlopen
-from urllib.error import *
-
 from stocks.models import Stock
+from stocks.recommend import *
 
 def index(request):
 	if request.user.is_authenticated():
@@ -94,47 +91,8 @@ def removeStock(request):
 def updateRecommendations(request):
 	allStocks = Stock.objects.all()
 	for stock in allStocks:
-		stock.recommended = anal_rectum(stock.code)
-		stock.save()
+		if stock.recommended != run_recommendation_analysis(stock):
+			stock.recommended = not stock.recommended
+			stock.save()
 	return redirect('/')
 
-def anal_rectum(symbol):
-	timeDiff = datetime.timedelta(weeks=2) #two weeks in the past
-	pastDate = datetime.datetime.now() - timeDiff
-	currDate = datetime.datetime.now()
-
-	url = "http://ichart.yahoo.com/table.csv?s="
-	url += symbol
-	url += "&a=" + str(pastDate.month - 1)
-	url += "&b=" + str(pastDate.day)
-	url += "&c=" + str(pastDate.year)
-	url += "&d=" + str(currDate.month - 1)
-	url += "&e=" + str(currDate.day)
-	url += "&f=" + str(currDate.year)
-
-	url += "&g=d&ignore=.csv"
-
-	try:
-		histData = urlopen(url) #file like object...read with file reader
-		data = histData.read()
-		
-		rows = str(data).split('\\n')
-
-		rising = 0
-		falling = 0
-
-		for row in rows[1:]:
-			members = row.split(',')
-			if(len(members) > 3):
-				popen = float(members[1])
-				pclose = float(members[4])
-
-				if pclose-popen > 0:
-					rising+=1
-				else:
-					falling+=1
-
-		return rising > falling
-
-	except URLError as e:
-		return e
