@@ -79,75 +79,69 @@
     }
 </script>
 
-<div class="footer-container">
-    <a href="#" class="toggle is-open">PORTFOLIO</a>
-    <div class="footer">
+<div class="grey_header">PORTFOLIO</div>
+<div class="content">
+    <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
+        <select class="form-control" name="stock">
+            {% for s in other_stocks %}
+                <option value="{{s.code}}">{{s.name}} ({{s.code}})</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
+    </form>
 
-        <form style="inline" id="addStock" action="/add_stock" method="post">{% csrf_token %}
-            <select class="form-control" name="stock">
-                {% for s in other_stocks %}
-                    <option value="{{s.code}}">{{s.name}} ({{s.code}})</option>
-                {% endfor %}
-            </select>
-            <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
-        </form>
-
-{% if user_stocks != None %}
-        <div class="table-responsive">
-            <table class="table" cellpadding="7">
-                <thead>
+    {% if user_stocks != None %}
+        <table class="content" cellpadding="7">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Company</th>
+                    <th>Select</th>
+                    <th>Date</th>
+                    <th class="numeric">Open</th>
+                    <th class="numeric">High</th>
+                    <th class="numeric">Low</th>
+                    <th class="numeric">Close</th>
+                    <th class="numeric">Volume</th>
+                </tr>
+            </thead>
+            <form id="removeStocks" action="/remove_stock" method="post">{% csrf_token %}
+                {% for stock in user_stocks %}
                     <tr>
-                        <th>Code</th>
-                        <th>Company</th>
-                        <th>Select</th>
-                        <th>Date</th>
-                        <th class="numeric">Open</th>
-                        <th class="numeric">High</th>
-                        <th class="numeric">Low</th>
-                        <th class="numeric">Close</th>
-                        <th class="numeric">Volume</th>
-                    </tr>
-                </thead>
-                <form id="removeStocks" action="/remove_stock" method="post">{% csrf_token %}
-                    {% for stock in user_stocks %}
-                        <tr style="border-top:1px solid black">
-                            <td>{{stock.code}}</td>
-                            <td>{{stock.name}}</td>
-                            <td>
-                                <label class="checkbox" for="checkbox1">
-                                    <input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/>
-                                </label>
-                            </td>
-                            <td id="{{stock.name}}_date"></td>
-                            <td  class="numeric" id="{{stock.name}}_open"></td>
-                            <td  class="numeric" id="{{stock.name}}_high"></td>
-                            <td  class="numeric" id="{{stock.name}}_low"></td>
-                            <td  class="numeric" id="{{stock.name}}_close"></td>
-                            <td  class="numeric" id="{{stock.name}}_volume"></td>
-                        <tr>
-                    {% endfor %}
-                </form>
-            </table>
-        </div>
+                        <td>{{stock.code}}</td>
+                        <td>{{stock.name}}</td>
+                        <td>
+                            <label class="checkbox" for="checkbox1">
+                                <input type="checkbox" name="stock" data-toggle="checkbox" value="{{stock.code}}"/>
+                            </label>
+                        </td>
+                        <td id="{{stock.name}}_date"></td>
+                        <td  class="numeric" id="{{stock.name}}_open"></td>
+                        <td  class="numeric" id="{{stock.name}}_high"></td>
+                        <td  class="numeric" id="{{stock.name}}_low"></td>
+                        <td  class="numeric" id="{{stock.name}}_close"></td>
+                        <td  class="numeric" id="{{stock.name}}_volume"></td>
+                    <tr>
+                {% endfor %}
+            </form>
+        </table>
+
+        <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize Selected</button>
+        <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove Selected</button>
+        <br/>
+        <br/>
         <input type="date" class="form-control input-sm" id="start" /> to <input type="date" class="form-control input-sm" id="end" />
         <script type="text/javascript">
             document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
             document.getElementById('end').value = new Date().toISOString().substring(0, 10);
         </script>
         <input type="button" class="btn btn-primary btn-wide" id="getstockbutton" onclick="updateStock()" value=""/>
-
-        <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
-        <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
-        {% endif %}
-
-    </div>
+    {% endif %}
 </div>
 
-<script src="/static/js/flatui-checkbox.js"></script>
 <script>
     function submitRemoveStocks() {
         document.getElementById("removeStocks").submit();
-        document.getElementById("")
     }
     function visualizeStocks() {
         checkedStocks = $("input:checkbox[name=stock]:checked");

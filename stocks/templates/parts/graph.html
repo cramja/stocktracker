@@ -12,34 +12,31 @@
             }, 5000);
 </script>
 
-<div class="footer-container">
-    <a href="#" class="toggle is-open" id="graph">VISUALISE</a>
-    <div class="footer">
+<div class="grey_header">VISUALISE</div>
+<div class="content">
+    <input type="text" class="form-control input-sm" id="stock_label" placeholder="e.g. TSCO" size="10"/>
+    <input type="text" data-toggle="tooltip" title="Separate ID's by comma" class="form-control input-sm btn-wide" id="additional_stocks" placeholder="e.g. GSK, ADM, BA" size="10"/>
 
-        <input type="text" class="form-control input-sm" id="stock_label" placeholder="e.g. TSCO" size="10"/>
-        <input type="text" data-toggle="tooltip" title="Separate ID's by comma" class="form-control input-sm btn-wide" id="additional_stocks" placeholder="e.g. GSK, ADM, BA" size="10"/>
+    <select class="form-control" id="time">
+        <optgroup label="Range">
+        <option value="1d">1 Day</option>
+        <option value="5d">5 Days</option>
+        <option value="3m">3 Months</option>
+        <option value="6m">6 Months</option>
+        <option value="1y">1 Year</option>
+        <option value="2y">2 Years</option>
+        <option value="5y">5 Years</option>
+        <option value="my">Maximum</option>
+    </select>
 
-        <select class="form-control" id="time">
-            <optgroup label="Range">
-            <option value="1d">1 Day</option>
-            <option value="5d">5 Days</option>
-            <option value="3m">3 Months</option>
-            <option value="6m">6 Months</option>
-            <option value="1y">1 Year</option>
-            <option value="2y">2 Years</option>
-            <option value="5y">5 Years</option>
-            <option value="my">Maximum</option>
-        </select>
+    <select class="form-control" id="charttype">
+        <optgroup label="Chart Type">
+        <option value="l">Line Graph</option>
+        <option value="b">Bar Graph</option>
+        <option value="c">Candle Graph</option>
+    </select>
 
-        <select class="form-control" id="charttype">
-            <optgroup label="Chart Type">
-            <option value="l">Line Graph</option>
-            <option value="b">Bar Graph</option>
-            <option value="c">Candle Graph</option>
-        </select>
-
-        <p style="text-align:center"><img src="http://chart.finance.yahoo.com/z?s=.L&t=1d&q=l&l=on&z=l&c=&region=GB&lang=en-GB" id="chart" ></p>
-    </div>
+    <p style="text-align:center"><img src="http://chart.finance.yahoo.com/z?s=.L&t=1d&q=l&l=on&z=l&c=&region=GB&lang=en-GB" id="chart" ></p>
 </div>
 
 <script type="text/javascript">
