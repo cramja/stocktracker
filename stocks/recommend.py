@@ -1,6 +1,5 @@
 import random, datetime
-from urllib.request import urlopen
-from urllib.error import URLError
+from urllib import *
 
 from stocks.models import Stock
 

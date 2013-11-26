@@ -3,11 +3,20 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
+from time import time
+from thread import start_new_thread
 
 from stocks.models import Stock
 from stocks.recommend import *
 
+updateAfter = 86400 # 1 day in seconds
+lastRecommendationUpdate = 0
+
 def index(request):
+    global lastRecommendationUpdate
+    if time() > lastRecommendationUpdate + updateAfter:
+        lastRecommendationUpdate = time()
+        start_new_thread(updateRecommendations, ())
     if request.user.is_authenticated():
         profile = request.user.profile
         userStocks = profile.interests.all()
@@ -87,13 +96,10 @@ def removeStock(request):
             userStocks.remove(stock)
     return redirect("/")
 
-@login_required
-def updateRecommendations(request):
+def updateRecommendations():
     allStocks = Stock.objects.all()
     for stock in allStocks:
         recommend = run_recommendation_analysis(stock.code)
         if recommend != 'error':
             stock.recommended = recommend
             stock.save()
-    return redirect('/')
-
