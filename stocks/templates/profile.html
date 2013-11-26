@@ -6,9 +6,7 @@
 
     {% include 'parts/login.html' %}
     
-    {% if user.is_authenticated %}
-        {% include 'parts/symbols.html' %}
-    {% endif %}
+    {% include 'parts/symbols.html' %}
 
     {% if recommended != None %}
         {% include 'parts/recommendation.html' %}

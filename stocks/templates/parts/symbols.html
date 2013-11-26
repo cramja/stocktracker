@@ -79,7 +79,6 @@
     }
 </script>
 
-{% if user_stocks != None %}
 <div class="footer-container">
     <a href="#" class="toggle is-open">PORTFOLIO</a>
     <div class="footer">
@@ -93,6 +92,7 @@
             <button class="btn btn-default btn-primary" type="submit">Add Stock</button>
         </form>
 
+{% if user_stocks != None %}
         <div class="table-responsive">
             <table class="table" cellpadding="7">
                 <thead>
@@ -129,7 +129,6 @@
                 </form>
             </table>
         </div>
-
         <input type="date" class="form-control input-sm" id="start" /> to <input type="date" class="form-control input-sm" id="end" />
         <script type="text/javascript">
             document.getElementById('start').value = new Date(new Date() - (3 * 1000 * 60 * 60 * 24)).toISOString().substring(0, 10);
@@ -140,6 +139,7 @@
         <button class="btn btn-default btn-primary"onclick="visualizeStocks()">Visualize</button>
         <button class="btn btn-default btn-danger" onclick="submitRemoveStocks()">Remove</button>
         {% endif %}
+
     </div>
 </div>
 
