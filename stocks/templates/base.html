@@ -3,17 +3,15 @@
 <head>
     <meta charset=utf-8>
     <title>{% block title %}Stock Tracker{% endblock %}</title>
-    <link href="/static/css/expanding_footer.css" rel="stylesheet">
     <link href="/static/css/flat-ui.css" rel="stylesheet">
-    <link href="/static/css/tables.css" rel="stylesheet">
-    <link href="/static/css/datepicker.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="/static/js/flatui-checkbox.js"></script>
 </head>
 <body>
-	<header>
-		<h1>Stock Tracker</h1>
-	</header>
+    <header>
+        <h1>Stock Tracker</h1>
+    </header>
     {% block content %}{% endblock %}
-    <script type="text/javascript" src="/static/js/expanding_footer.js"></script>
 </body>
 </html>

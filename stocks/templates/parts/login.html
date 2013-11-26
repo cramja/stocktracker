@@ -1,15 +1,11 @@
 {% if user.is_authenticated %}
-    <div class="footer-container">
-        <a href="#" class="toggle-nomove"  onclick="logout()">LOGOUT</a>
-        <div class="footer_link">
-            <!-- <p></p> -->
-        </div>
-    </div>
+    <a href="/logout" class="blue_header">LOGOUT</a>
 
 {% else %}
-<div class="footer-container">
-    <a href="#" class="toggle is-open">LOGIN</a>
-    <div class="footer">
+<div class="grey_header">
+    LOGIN
+</div>
+    <div class="content">
         <form role="form" action="/login" method="post"> {% csrf_token %}
             <div class="form-group">
                 <input type="text" class="form-control input-sm" placeholder="Username" name="username" required autofocus value="{{ username }}" />
@@ -18,7 +14,6 @@
                 <button class="btn btn-default btn-info" onclick="register();return false;">Register</button>
             </div>
         </form>
-    </div>
 </div>
 {% endif %}
 
