@@ -91,8 +91,9 @@ def removeStock(request):
 def updateRecommendations(request):
     allStocks = Stock.objects.all()
     for stock in allStocks:
-        if stock.recommended != run_recommendation_analysis(stock):
-            stock.recommended = not stock.recommended
+        recommend = run_recommendation_analysis(stock.code)
+        if recommend != 'error':
+            stock.recommended = recommend
             stock.save()
     return redirect('/')
 
