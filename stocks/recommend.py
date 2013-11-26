@@ -49,14 +49,17 @@ def get_stock_data(symbol, time_period = datetime.timedelta(weeks=2)):
 #takes a raw Yahoo api string and removes excess text
 #returns rows stockData objects
 def clean_stock_data(csv_string):
-    rows = str(csv_string).split('\\n')
+    rows = str(csv_string).split('\n')
     rows = rows[1:len(rows)-1] #kill the first and last row
     #now we just have financial data
     stocks = []
     for datarow in rows:
-        row = datarow.split(',')
-        stock = stockData(row[0], row[1], row[4], row[2], row[3], row[5])
-        stocks.append(stock)
+        try:
+            row = datarow.split(',')
+            stock = stockData(row[0], row[1], row[4], row[2], row[3], row[5])
+            stocks.append(stock)
+        except:
+            pass
     return stocks
 
 # given a list of cleaned csv data
